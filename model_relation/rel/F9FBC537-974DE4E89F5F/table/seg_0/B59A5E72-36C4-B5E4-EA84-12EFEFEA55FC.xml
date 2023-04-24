@@ -1,0 +1,47 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B59A5E72-36C4-B5E4-EA84-12EFEFEA55FC" name="type_users">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 19:05:29 UTC</createdTime>
+<generatorID>91558C6F-009E-C154-0149-6459FC9F2A2D</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="type_user_id" id="BCEB91E7-BBEB-2195-D972-C9BAB3B34CD4">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 19:05:29 UTC</createdTime>
+<generatorID>D6200578-55A5-3278-BD8E-EAD73B4A86BF</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="name_type_user" id="C9D4912F-67FF-8108-1EE1-52E6FB2EF404">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 19:05:29 UTC</createdTime>
+<generatorID>6DB740C1-710F-D949-A207-D298382C79C0</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="D255A03E-8D82-FBA8-55FF-AC2DA9B27FEA" name="type_users_PK">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 19:05:29 UTC</createdTime>
+<generatorID>E83A228C-3529-20B1-3501-F609B93573F3</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BCEB91E7-BBEB-2195-D972-C9BAB3B34CD4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

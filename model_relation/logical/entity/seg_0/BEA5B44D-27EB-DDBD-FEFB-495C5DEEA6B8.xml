@@ -1,0 +1,93 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="BEA5B44D-27EB-DDBD-FEFB-495C5DEEA6B8" name="detail_sale">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 19:20:59 UTC</createdTime>
+<ownerDesignName>model_relation</ownerDesignName>
+<engineerTo>
+<item key="F9FBC537-4855-8DA3-370D-974DE4E89F5F" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="detail_sale_id" id="8ED32EB3-17B6-FA00-9F45-1A98BA40856B">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 19:21:35 UTC</createdTime>
+<ownerDesignName>model_relation</ownerDesignName>
+<engineerTo>
+<item key="F9FBC537-4855-8DA3-370D-974DE4E89F5F" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="quantity" id="154D16A9-6C10-C644-63D6-ABED2A4F63E5">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 19:21:45 UTC</createdTime>
+<ownerDesignName>model_relation</ownerDesignName>
+<engineerTo>
+<item key="F9FBC537-4855-8DA3-370D-974DE4E89F5F" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="price" id="8DCE0AED-C24D-3939-B942-CC8F448B4CCC">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-28 04:20:26 UTC</createdTime>
+<ownerDesignName>model_relation</ownerDesignName>
+<engineerTo>
+<item key="F9FBC537-4855-8DA3-370D-974DE4E89F5F" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="product id" id="4618150D-5A55-9F1F-DBA5-B04FA7708E2A">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 19:27:28 UTC</createdTime>
+<generatorID>D496849D-8444-7137-33AE-44B3E513F9B9</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<engineerTo>
+<item key="F9FBC537-4855-8DA3-370D-974DE4E89F5F" value="true"/>
+</engineerTo>
+<referedAttribute>26D64904-6929-0F03-F254-581B55139F1E</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="sales_id" id="5B618DBA-BBCF-ED5B-A4F9-8A1A108882B0">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-28 04:16:29 UTC</createdTime>
+<generatorID>B6C24F2F-B258-A3DD-F1E7-595599CC7CCE</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<engineerTo>
+<item key="F9FBC537-4855-8DA3-370D-974DE4E89F5F" value="true"/>
+</engineerTo>
+<referedAttribute>E1832575-55D0-DB7B-5C72-5DC2E075B419</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="2BD4C5CB-7863-61AB-81AC-28D1CC447969" name="detail_sale PK">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 19:21:42 UTC</createdTime>
+<ownerDesignName>model_relation</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="F9FBC537-4855-8DA3-370D-974DE4E89F5F" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>8ED32EB3-17B6-FA00-9F45-1A98BA40856B</attributeRef>
+<attributeRef>4618150D-5A55-9F1F-DBA5-B04FA7708E2A</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

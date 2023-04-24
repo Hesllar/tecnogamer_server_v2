@@ -1,0 +1,57 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="91558C6F-009E-C154-0149-6459FC9F2A2D" name="type_users">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 19:04:21 UTC</createdTime>
+<ownerDesignName>model_relation</ownerDesignName>
+<engineerTo>
+<item key="F9FBC537-4855-8DA3-370D-974DE4E89F5F" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="type_user_id" id="D6200578-55A5-3278-BD8E-EAD73B4A86BF">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 19:04:29 UTC</createdTime>
+<ownerDesignName>model_relation</ownerDesignName>
+<engineerTo>
+<item key="F9FBC537-4855-8DA3-370D-974DE4E89F5F" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="name_type_user" id="6DB740C1-710F-D949-A207-D298382C79C0">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 19:04:39 UTC</createdTime>
+<ownerDesignName>model_relation</ownerDesignName>
+<engineerTo>
+<item key="F9FBC537-4855-8DA3-370D-974DE4E89F5F" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="E83A228C-3529-20B1-3501-F609B93573F3" name="type_users PK">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 19:04:37 UTC</createdTime>
+<ownerDesignName>model_relation</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="F9FBC537-4855-8DA3-370D-974DE4E89F5F" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>D6200578-55A5-3278-BD8E-EAD73B4A86BF</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,94 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="01DFC5BD-ADBE-265B-F6E1-4DCD0A2BBE1C" name="products">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-25 02:34:26 UTC</createdTime>
+<generatorID>598E728C-6B01-65A4-F51A-C2309C84F6BD</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="product_id" id="8BC7FF2F-E5B0-39F4-ED44-D2C4143FE6B2">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-25 02:34:26 UTC</createdTime>
+<generatorID>26D64904-6929-0F03-F254-581B55139F1E</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="name_product" id="3C22067F-3D69-EA62-F64D-A6373F543030">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-25 02:34:26 UTC</createdTime>
+<generatorID>A4C749D3-AB55-18D7-BC29-65FF78A2F1D2</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="stock" id="25F2F312-171E-6363-92EB-3DAEE7CDF80C">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-25 02:34:26 UTC</createdTime>
+<generatorID>C8178C6C-AA58-6AE6-6563-093E72EDD59D</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="price" id="0DB7CCB7-B7A9-C3D7-CD6E-B6FB57BC5779">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-25 02:34:26 UTC</createdTime>
+<generatorID>BA900A34-3E96-B6E5-BA01-0EE539DA6F83</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="description" id="C2D5EFE3-3B92-E612-6CB6-C0981B06BFF1">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-25 02:34:26 UTC</createdTime>
+<generatorID>88E4FF10-01B0-7813-5740-F8F2D81DE349</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500</dataTypeSize>
+<ownDataTypeParameters>500,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="image" id="E294FC24-AEF2-FD50-B242-0C2DA39D7034">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-25 02:34:26 UTC</createdTime>
+<generatorID>57FEB1C5-33DB-A59F-1850-E67DC9DAD7E9</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="01AC4ED9-BB02-1937-9221-D276A45FBEEC" name="products_PK">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-25 02:34:26 UTC</createdTime>
+<generatorID>2968723B-4988-C407-D5CD-2F6034B4C25E</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8BC7FF2F-E5B0-39F4-ED44-D2C4143FE6B2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

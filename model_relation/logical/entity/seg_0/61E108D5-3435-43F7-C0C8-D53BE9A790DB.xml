@@ -1,0 +1,69 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="61E108D5-3435-43F7-C0C8-D53BE9A790DB" name="categories">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-25 02:19:28 UTC</createdTime>
+<ownerDesignName>model_relation</ownerDesignName>
+<engineerTo>
+<item key="F9FBC537-4855-8DA3-370D-974DE4E89F5F" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="category id" id="E17E2CAE-FB74-0907-A965-97B64F593B0C">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-25 02:21:04 UTC</createdTime>
+<ownerDesignName>model_relation</ownerDesignName>
+<engineerTo>
+<item key="F9FBC537-4855-8DA3-370D-974DE4E89F5F" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="name category" id="7659AFA0-17A1-005C-2862-A9B822D35008">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-25 02:23:10 UTC</createdTime>
+<ownerDesignName>model_relation</ownerDesignName>
+<engineerTo>
+<item key="F9FBC537-4855-8DA3-370D-974DE4E89F5F" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="product id" id="E3A5612E-D861-6D11-D327-B863DE645A6A">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-25 02:37:34 UTC</createdTime>
+<generatorID>36416FA4-12C6-E2FA-741F-58E17C586549</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<engineerTo>
+<item key="F9FBC537-4855-8DA3-370D-974DE4E89F5F" value="true"/>
+</engineerTo>
+<referedAttribute>26D64904-6929-0F03-F254-581B55139F1E</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="01951577-7117-D53D-50F4-C070D868B967" name="categories PK">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-25 02:21:28 UTC</createdTime>
+<ownerDesignName>model_relation</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="F9FBC537-4855-8DA3-370D-974DE4E89F5F" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>E17E2CAE-FB74-0907-A965-97B64F593B0C</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

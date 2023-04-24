@@ -1,0 +1,121 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="80B5A28B-6DBF-D028-704B-AAD220585A5D" name="users">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 18:52:55 UTC</createdTime>
+<ownerDesignName>model_relation</ownerDesignName>
+<engineerTo>
+<item key="F9FBC537-4855-8DA3-370D-974DE4E89F5F" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="user_id" id="A3B512BA-72C1-3B07-F769-B8DB1086C070">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 18:53:06 UTC</createdTime>
+<ownerDesignName>model_relation</ownerDesignName>
+<engineerTo>
+<item key="F9FBC537-4855-8DA3-370D-974DE4E89F5F" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="first_name" id="EC6616C9-5C85-03ED-13F9-E579DEB8F493">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 18:53:16 UTC</createdTime>
+<ownerDesignName>model_relation</ownerDesignName>
+<engineerTo>
+<item key="F9FBC537-4855-8DA3-370D-974DE4E89F5F" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="last_name" id="BE9B9F4E-1D07-C7CB-F147-5E7E06E34E64">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 18:53:42 UTC</createdTime>
+<ownerDesignName>model_relation</ownerDesignName>
+<engineerTo>
+<item key="F9FBC537-4855-8DA3-370D-974DE4E89F5F" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="user_name" id="E04E8118-B3A2-E982-D3F8-8F7A965735F5">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 18:53:54 UTC</createdTime>
+<ownerDesignName>model_relation</ownerDesignName>
+<engineerTo>
+<item key="F9FBC537-4855-8DA3-370D-974DE4E89F5F" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="email" id="10F477A4-D08C-F614-33FD-69B7B217EAEA">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 18:54:10 UTC</createdTime>
+<ownerDesignName>model_relation</ownerDesignName>
+<engineerTo>
+<item key="F9FBC537-4855-8DA3-370D-974DE4E89F5F" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="password" id="632D5599-9792-4E24-C12A-108C3FF80DFE">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 18:54:30 UTC</createdTime>
+<ownerDesignName>model_relation</ownerDesignName>
+<engineerTo>
+<item key="F9FBC537-4855-8DA3-370D-974DE4E89F5F" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="type_user_id" id="2E46ED74-5962-858E-AD97-9B5668673F38">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 19:05:02 UTC</createdTime>
+<generatorID>019B5136-D551-6A40-34AB-C485733442FD</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<engineerTo>
+<item key="F9FBC537-4855-8DA3-370D-974DE4E89F5F" value="true"/>
+</engineerTo>
+<referedAttribute>D6200578-55A5-3278-BD8E-EAD73B4A86BF</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="1C2B23E1-F266-F5B8-B7DB-F542A499219D" name="users PK">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 18:53:12 UTC</createdTime>
+<ownerDesignName>model_relation</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="F9FBC537-4855-8DA3-370D-974DE4E89F5F" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>A3B512BA-72C1-3B07-F769-B8DB1086C070</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

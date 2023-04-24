@@ -1,0 +1,71 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="37A14800-BB1E-EA86-E31B-C0DF022ED3AA" name="marks">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-25 02:34:26 UTC</createdTime>
+<generatorID>90745B19-39C3-BA59-3EE3-3CC70CC4A249</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="mark_id" id="AECDC436-2049-7A89-6F21-F9642C3AFA3F">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-25 02:34:26 UTC</createdTime>
+<generatorID>49F27482-C4CF-A62F-D71E-C3CECAA3A05C</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="name_mark" id="3FE75979-AF30-F7E1-0E29-A126E63388B6">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-25 02:34:26 UTC</createdTime>
+<generatorID>CDD96065-AA47-FB75-4380-67ABE035A0A0</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="products_product_id" id="343463EB-F74A-2AA3-6F9D-2FABA5B4ED71">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-25 02:34:26 UTC</createdTime>
+<generatorID>EC362827-FA4A-8C5D-8FC8-8797520F1DAF</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="0C87DD65-12DA-D2A3-7D49-CC93BFB17804" referredColumn="8BC7FF2F-E5B0-39F4-ED44-D2C4143FE6B2"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="75F0EF5E-667B-0492-6446-3F87C4778E63" name="marks_PK">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-25 02:34:26 UTC</createdTime>
+<generatorID>1AC61105-FEB8-A447-B2F7-DA7A5514AA17</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AECDC436-2049-7A89-6F21-F9642C3AFA3F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1B31F54A-1EB3-DA52-B5B3-9715C2414204" name="marks_products_FK">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-25 02:34:26 UTC</createdTime>
+<generatorID>3E1E2D9B-8B60-9E3D-2E4B-2D798FD7B0A3</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="343463EB-F74A-2AA3-6F9D-2FABA5B4ED71"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

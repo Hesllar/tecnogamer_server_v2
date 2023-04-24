@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="marks products FK" directorySegmentName="seg_0" id="3E1E2D9B-8B60-9E3D-2E4B-2D798FD7B0A3">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-25 02:31:32 UTC</createdTime>
+<ownerDesignName>model_relation</ownerDesignName>
+<engineerTo>
+<item key="F9FBC537-4855-8DA3-370D-974DE4E89F5F" value="true"/>
+</engineerTo>
+<sourcePk>2968723B-4988-C407-D5CD-2F6034B4C25E</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>product_id</nameOnSource>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>598E728C-6B01-65A4-F51A-C2309C84F6BD</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>90745B19-39C3-BA59-3EE3-3CC70CC4A249</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

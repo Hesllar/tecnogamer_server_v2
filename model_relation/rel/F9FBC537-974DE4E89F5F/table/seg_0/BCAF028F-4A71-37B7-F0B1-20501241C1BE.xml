@@ -1,0 +1,113 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="BCAF028F-4A71-37B7-F0B1-20501241C1BE" name="detail_sale">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 19:23:39 UTC</createdTime>
+<generatorID>BEA5B44D-27EB-DDBD-FEFB-495C5DEEA6B8</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="quantity" id="B17EBC96-EAB5-0B82-4700-E6A829C69AA6">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 19:23:39 UTC</createdTime>
+<generatorID>154D16A9-6C10-C644-63D6-ABED2A4F63E5</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="detail_sale_id" id="02B8848A-E5EA-C77B-0A66-1E0B4C9C5F38">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 19:23:39 UTC</createdTime>
+<generatorID>8ED32EB3-17B6-FA00-9F45-1A98BA40856B</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="products_product_id" id="C960C21F-0D93-9AB9-F95C-A733DAD8737A">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 19:27:37 UTC</createdTime>
+<generatorID>4618150D-5A55-9F1F-DBA5-B04FA7708E2A</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="44DA5F2F-1AC5-0D73-B44F-8F59BBD9C1DE" referredColumn="8BC7FF2F-E5B0-39F4-ED44-D2C4143FE6B2"/>
+</associations>
+</Column>
+<Column name="sales_sales_id" id="74640AEC-3831-1714-153D-4DDDAC925DFC">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-28 04:16:35 UTC</createdTime>
+<generatorID>5B618DBA-BBCF-ED5B-A4F9-8A1A108882B0</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="8FBDE02B-2F4B-F999-CF40-4B1D37EB61CA" referredColumn="CB0446A0-4D64-A4BB-D6BE-8DF688591B33"/>
+</associations>
+</Column>
+<Column name="price" id="287141DA-4D51-02B5-F535-A26A97612DCF">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-28 04:21:51 UTC</createdTime>
+<generatorID>8DCE0AED-C24D-3939-B942-CC8F448B4CCC</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="2B63E22B-E46D-AFC5-730C-A0FF4AE6E72B" name="detail_sale_PK">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 19:23:39 UTC</createdTime>
+<generatorID>2BD4C5CB-7863-61AB-81AC-28D1CC447969</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="02B8848A-E5EA-C77B-0A66-1E0B4C9C5F38"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="84AC6ACF-4384-497B-0EA2-BFAFFE86BA0E" name="detail_sale__IDX">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 19:26:35 UTC</createdTime>
+<ownerDesignName>model_relation</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>23EB1DDD-F273-E048-A693-F6A04363579C</relationGeneratorID>
+</ind_PK_UK>
+<ind_PK_UK id="191A9474-83FB-A377-AA9C-21662BDA7BE2" name="detail_sale_products_FK">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 19:27:37 UTC</createdTime>
+<generatorID>D496849D-8444-7137-33AE-44B3E513F9B9</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C960C21F-0D93-9AB9-F95C-A733DAD8737A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="823187A7-F919-EF49-C711-0EDC90953B13" name="detail_sale_sales_FK">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-28 04:16:35 UTC</createdTime>
+<generatorID>B6C24F2F-B258-A3DD-F1E7-595599CC7CCE</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="74640AEC-3831-1714-153D-4DDDAC925DFC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

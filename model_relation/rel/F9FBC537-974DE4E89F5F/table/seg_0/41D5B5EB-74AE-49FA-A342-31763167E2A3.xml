@@ -1,0 +1,81 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="41D5B5EB-74AE-49FA-A342-31763167E2A3" name="sales">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 19:23:39 UTC</createdTime>
+<generatorID>F695F3A3-7500-E5AD-748D-B01BD7C53F17</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="sales_id" id="CB0446A0-4D64-A4BB-D6BE-8DF688591B33">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 19:23:39 UTC</createdTime>
+<generatorID>E1832575-55D0-DB7B-5C72-5DC2E075B419</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="total_sale" id="67024DD4-44AA-F7C4-3EA0-A1C32D3CD133">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 19:23:39 UTC</createdTime>
+<generatorID>3B50C25D-CFA6-36E3-9737-04E444149061</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="date_sale" id="AC751B5C-A561-11DD-2410-1AE60D5F5219">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 19:23:39 UTC</createdTime>
+<generatorID>405FD4C0-2CF3-2329-7E31-32C13A04C36A</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="users_user_id" id="B6555083-685E-EBFC-8E57-74A6DD1171B2">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 19:23:39 UTC</createdTime>
+<generatorID>ECCEB3A9-3788-2CF6-6A17-700554A2FCA9</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="871C22CC-329E-9963-DBC7-0EED0AEAFBB2" referredColumn="C9479EA1-5BCA-CE3F-39A9-9E6ABDE56ACB"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="BB422897-21EF-4E0A-6236-670A9E74C7D7" name="sales_PK">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 19:23:39 UTC</createdTime>
+<generatorID>ED15E584-018D-02E4-E384-78F93827616C</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CB0446A0-4D64-A4BB-D6BE-8DF688591B33"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E6F79EFD-1641-F354-8D51-5E184A29AD5D" name="sales_users_FK">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 19:23:39 UTC</createdTime>
+<generatorID>D60AA7AB-2025-DD45-11BB-0C08CAAB17F0</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B6555083-685E-EBFC-8E57-74A6DD1171B2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

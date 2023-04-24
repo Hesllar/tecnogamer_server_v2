@@ -1,0 +1,80 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="F695F3A3-7500-E5AD-748D-B01BD7C53F17" name="sales">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 19:17:41 UTC</createdTime>
+<ownerDesignName>model_relation</ownerDesignName>
+<engineerTo>
+<item key="F9FBC537-4855-8DA3-370D-974DE4E89F5F" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="sales_id" id="E1832575-55D0-DB7B-5C72-5DC2E075B419">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 19:17:45 UTC</createdTime>
+<ownerDesignName>model_relation</ownerDesignName>
+<engineerTo>
+<item key="F9FBC537-4855-8DA3-370D-974DE4E89F5F" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="total_sale" id="3B50C25D-CFA6-36E3-9737-04E444149061">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 19:17:57 UTC</createdTime>
+<ownerDesignName>model_relation</ownerDesignName>
+<engineerTo>
+<item key="F9FBC537-4855-8DA3-370D-974DE4E89F5F" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="date_sale" id="405FD4C0-2CF3-2329-7E31-32C13A04C36A">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 19:20:16 UTC</createdTime>
+<ownerDesignName>model_relation</ownerDesignName>
+<engineerTo>
+<item key="F9FBC537-4855-8DA3-370D-974DE4E89F5F" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="user_id" id="ECCEB3A9-3788-2CF6-6A17-700554A2FCA9">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 19:23:29 UTC</createdTime>
+<generatorID>D60AA7AB-2025-DD45-11BB-0C08CAAB17F0</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<engineerTo>
+<item key="F9FBC537-4855-8DA3-370D-974DE4E89F5F" value="true"/>
+</engineerTo>
+<referedAttribute>A3B512BA-72C1-3B07-F769-B8DB1086C070</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="ED15E584-018D-02E4-E384-78F93827616C" name="sales PK">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-26 19:17:50 UTC</createdTime>
+<ownerDesignName>model_relation</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="F9FBC537-4855-8DA3-370D-974DE4E89F5F" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>E1832575-55D0-DB7B-5C72-5DC2E075B419</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

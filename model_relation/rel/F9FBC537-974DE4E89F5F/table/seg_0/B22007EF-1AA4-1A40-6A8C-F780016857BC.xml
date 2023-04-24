@@ -1,0 +1,71 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B22007EF-1AA4-1A40-6A8C-F780016857BC" name="categories">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-25 02:34:26 UTC</createdTime>
+<generatorID>61E108D5-3435-43F7-C0C8-D53BE9A790DB</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="category_id" id="4C093728-3B96-CFEA-338A-80928F597809">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-25 02:34:26 UTC</createdTime>
+<generatorID>E17E2CAE-FB74-0907-A965-97B64F593B0C</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="name_category" id="32D9A7A5-B5DF-17B8-3450-F35D1F7C00F4">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-25 02:34:26 UTC</createdTime>
+<generatorID>7659AFA0-17A1-005C-2862-A9B822D35008</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="products_product_id" id="42E840E5-B50E-737B-ACD5-D79EB8658E9D">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-25 02:38:22 UTC</createdTime>
+<generatorID>E3A5612E-D861-6D11-D327-B863DE645A6A</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="68249482-F95C-F264-82D3-80ED2A11F4D0" referredColumn="8BC7FF2F-E5B0-39F4-ED44-D2C4143FE6B2"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="8114A159-E2A9-B42F-79AF-E96B61CBB652" name="categories_PK">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-25 02:34:26 UTC</createdTime>
+<generatorID>01951577-7117-D53D-50F4-C070D868B967</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4C093728-3B96-CFEA-338A-80928F597809"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6E0DC3F6-8FB6-6004-6FB4-8C263D82A0EF" name="categories_products_FK">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-25 02:38:22 UTC</createdTime>
+<generatorID>36416FA4-12C6-E2FA-741F-58E17C586549</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="42E840E5-B50E-737B-ACD5-D79EB8658E9D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

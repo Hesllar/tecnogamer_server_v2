@@ -1,0 +1,69 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="90745B19-39C3-BA59-3EE3-3CC70CC4A249" name="marks">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-25 02:23:43 UTC</createdTime>
+<ownerDesignName>model_relation</ownerDesignName>
+<engineerTo>
+<item key="F9FBC537-4855-8DA3-370D-974DE4E89F5F" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="mark id" id="49F27482-C4CF-A62F-D71E-C3CECAA3A05C">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-25 02:23:51 UTC</createdTime>
+<ownerDesignName>model_relation</ownerDesignName>
+<engineerTo>
+<item key="F9FBC537-4855-8DA3-370D-974DE4E89F5F" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="name mark" id="CDD96065-AA47-FB75-4380-67ABE035A0A0">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-25 02:24:06 UTC</createdTime>
+<ownerDesignName>model_relation</ownerDesignName>
+<engineerTo>
+<item key="F9FBC537-4855-8DA3-370D-974DE4E89F5F" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="products product id" id="EC362827-FA4A-8C5D-8FC8-8797520F1DAF">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-25 02:31:32 UTC</createdTime>
+<generatorID>3E1E2D9B-8B60-9E3D-2E4B-2D798FD7B0A3</generatorID>
+<ownerDesignName>model_relation</ownerDesignName>
+<engineerTo>
+<item key="F9FBC537-4855-8DA3-370D-974DE4E89F5F" value="true"/>
+</engineerTo>
+<referedAttribute>26D64904-6929-0F03-F254-581B55139F1E</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="1AC61105-FEB8-A447-B2F7-DA7A5514AA17" name="marks PK">
+<createdBy>hesll</createdBy>
+<createdTime>2023-01-25 02:24:03 UTC</createdTime>
+<ownerDesignName>model_relation</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="F9FBC537-4855-8DA3-370D-974DE4E89F5F" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>49F27482-C4CF-A62F-D71E-C3CECAA3A05C</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>
