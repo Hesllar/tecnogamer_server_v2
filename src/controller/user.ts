@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import { getUsersFn, getUserByIdFn, createUserFn, updateUserFn, updatePasswordUserFn } from '../db/function/user';
 import { sendOk, internalError, badRequest } from '../utils/http';
-import { UserInterface } from '../interfaces';
+import { updateUser as structUser } from '../interfaces';
 import { createUserName } from '../utils/createUserName';
 import { userMappers } from '../mappers';
 import { createToken } from '../auth/createToken';
@@ -44,11 +44,9 @@ export const getUsersById = async (req: Request, res: Response) => {
 export const updateUser = async (req: Request, res: Response) => {
     try {
 
-        const { userId } = req.params;
-
-        const {password, ...resto} = userMappers({ userId, ...req.body});
+        const { userId, firstName, lastName, userName} : structUser = userMappers({ ...req.params, ...req.body});
     
-        const {ok, result} = await updateUserFn(resto);
+        const {ok, result} = await updateUserFn({userId, firstName, lastName, userName});
 
         if(!ok) return badRequest(res, result.message, {});
 

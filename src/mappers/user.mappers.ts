@@ -11,13 +11,13 @@ export const userMappers = (userData: UserInterface) => {
         userId,
         password
     } = userData;
-
+    
     return {
         userId, 
         firstName, 
         lastName, 
         userName, 
-        email:email.toLowerCase(), 
+        email: (email) && email.toLowerCase(), 
         password, 
         typeUserId
     }

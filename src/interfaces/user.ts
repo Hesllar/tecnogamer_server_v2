@@ -7,3 +7,4 @@ export interface UserInterface {
     userId?: number,
     password?: string,
 }
+export type updateUser = Pick<UserInterface, 'userId' | 'firstName' | 'lastName' | 'userName'>
