@@ -11,7 +11,7 @@ AS $BODY$
     BEGIN
         
         RETURN QUERY
-          SELECT * FROM marks  where markId = p_markId;
+          SELECT * FROM marks m where m.mark_id  = p_markId;
         exception 
         when others then 
             RAISE;

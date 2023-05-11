@@ -2,14 +2,15 @@
 import { Request, Response } from 'express';
 import { getMarksFn, getMarkByIdFn, createMarkFn, updateMarkFn } from '../db/function/mark';
 import { Mark } from '../interfaces';
-import { sendOk, internalError } from '../utils/http';
+import { sendOk, internalError, badRequest } from '../utils/http';
 
 
 export const getMarks = async (req: Request, res: Response) => {
     try {
-        const resp = await getMarksFn();
 
-        sendOk(res, (resp.length === 0) ? 'No hay marcas' : 'Marcas encontradas', resp);
+        const {ok, result:{ responseGet }} = await getMarksFn();
+
+        sendOk(res, (responseGet.length === 0) ? 'No hay marcas' : 'Marcas encontradas', responseGet);
 
     } catch (error) {
         if (error instanceof Error) {
@@ -23,9 +24,9 @@ export const getMarkById = async (req: Request, res: Response) => {
 
         const { markId } = req.params;
 
-        const resp = await getMarkByIdFn(+markId);
+        const {ok, result:{ responseGet} } = await getMarkByIdFn({ markId: +markId });
 
-        sendOk(res, (resp.length === 0) ? 'No hay datos para esta marca' : 'Datos encontrados', resp);
+        sendOk(res, (responseGet.length === 0) ? 'No hay datos para esta marca' : 'Datos encontrados', responseGet);
 
     } catch (error) {
         if (error instanceof Error) {
@@ -40,9 +41,11 @@ export const createMark = async (req: Request, res: Response) => {
 
         const { nameMark }: Mark = req.body;
 
-        const resp = await createMarkFn(nameMark.trim());
+        const {ok, result: { responsePost, responseError }} = await createMarkFn({ nameMark: nameMark.trim() });
 
-        sendOk(res, 'Marca creada correctamente', resp, 201);
+        if(!ok) return badRequest(res, responseError.message, {});
+
+        sendOk(res, 'Marca creada correctamente', responsePost, 201);
 
     } catch (error) {
         if (error instanceof Error) {

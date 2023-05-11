@@ -1,5 +1,13 @@
 
 export interface ResponseService {
     ok: boolean
-    result: any
+    result: {
+        responseGet?:any,
+        responsePost?:any,
+        responsePut?:any,
+        responseDelete?:any,
+        responsePatch?:any,
+        responseError?:any
+        
+    }
 }

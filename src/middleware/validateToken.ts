@@ -21,6 +21,7 @@ export const validateToken = (req:Request, res:Response, next:NextFunction)=> {
             email,
             typeUser
         }
+        
         next();
 
     } catch (error) {
