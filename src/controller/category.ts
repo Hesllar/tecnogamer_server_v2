@@ -1,14 +1,16 @@
 import { Request, Response } from 'express';
-import { getCategoriesFn, getCategoryByIdFn, createCategoryFn, updateCategoryFn } from '../db/function/category';
+import { serviceCategory } from '../services';
 import { Category } from '../interfaces';
-import { sendOk, internalError } from '../utils/http';
+import { sendOk, internalError, badRequest } from '../utils/http';
 
 export const getCategories = async (req: Request, res: Response) => {
     try {
 
-        const resp = await getCategoriesFn();
+        const {ok , result } = await serviceCategory.getCategoriesFn();
 
-        sendOk(res, (resp.length === 0) ? 'No hay categorías' : 'Categorías encontradas', resp);
+        if(!ok) return badRequest(res, result.message, result);
+
+        sendOk(res, (result.length === 0) ? 'No hay categorías' : 'Categorías encontradas', result);
 
     } catch (error) {
         if (error instanceof Error) {
@@ -23,9 +25,11 @@ export const getCategoryById = async (req: Request, res: Response) => {
 
         const { categoryId } = req.params;
 
-        const resp = await getCategoryByIdFn(+categoryId);
+        const {ok , result } = await serviceCategory.getCategoryByIdFn({categoryId: +categoryId});
 
-        sendOk(res, (resp.length === 0) ? 'No hay datos para esta categoría' : 'Datos encontrados', resp);
+        if(!ok) return badRequest(res, result.message, result);
+
+        sendOk(res, (result.length === 0) ? 'No hay datos para esta categoría' : 'Datos encontrados', result);
 
     } catch (error) {
         if (error instanceof Error) {
@@ -38,11 +42,13 @@ export const getCategoryById = async (req: Request, res: Response) => {
 export const createCategory = async (req: Request, res: Response) => {
     try {
 
-        const { nameCategory }: Category = req.body;
+        const { nameCategory } = req.body;
 
-        const resp = await createCategoryFn(nameCategory.trim());
+        const {ok , result } = await serviceCategory.createCategoryFn({nameCategory: nameCategory.trim()});
 
-        sendOk(res, 'Categoría creada correctamente', resp, 201);
+        if(!ok) return badRequest(res, result.message, result);
+
+        sendOk(res, 'Categoría creada correctamente', result.shift(), 201);
 
     } catch (error) {
         if (error instanceof Error) {
@@ -56,11 +62,18 @@ export const updateCategory = async (req: Request, res: Response) => {
 
         const { categoryId } = req.params;
 
-        const { nameCategory }: Category = req.body;
+        const { nameCategory } = req.body;
 
-        const resp = await updateCategoryFn(+categoryId, nameCategory.trim());
+        const bodyCategory : Category = {
+            categoryId: +categoryId,
+            nameCategory
+        }
+  
+        const {ok, result} = await serviceCategory.updateCategoryFn(bodyCategory);
+       
+        if(!ok) return badRequest(res, result.message, result);
 
-        sendOk(res, 'Categoría actualizada correctamente', resp, 201);
+        sendOk(res, 'Categoría actualizada correctamente', result.shift(), 201);
 
     } catch (error) {
         if (error instanceof Error) {
