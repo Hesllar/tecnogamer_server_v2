@@ -1,6 +1,6 @@
 import db from '../db/config';
 import { QueryTypes } from 'sequelize';
-import { ResponseService, postCategory, getCategoryById, Category } from '../interfaces';
+import { ResponseService, PostCategory, GetCategoryById, Category } from '../interfaces';
 
 export const getCategoriesFn = async (): Promise<ResponseService> => {
     try {
@@ -17,7 +17,7 @@ export const getCategoriesFn = async (): Promise<ResponseService> => {
     }
 }
 
-export const getCategoryByIdFn = async ({ categoryId }: getCategoryById): Promise<ResponseService> => {
+export const getCategoryByIdFn = async ({ categoryId }: GetCategoryById): Promise<ResponseService> => {
     try {
         const resp = await db.query('SELECT * FROM fn_get_category_by_id(?)', 
         { type: QueryTypes.SELECT, replacements:[ categoryId ] });
@@ -33,7 +33,7 @@ export const getCategoryByIdFn = async ({ categoryId }: getCategoryById): Promis
     }
 }
 
-export const createCategoryFn = async ({ nameCategory }:postCategory): Promise<ResponseService> => {
+export const createCategoryFn = async ({ nameCategory }:PostCategory): Promise<ResponseService> => {
     try {
         const resp = await db.query('SELECT * FROM fn_create_category(?)',
             { type: QueryTypes.INSERT, replacements: [nameCategory] });

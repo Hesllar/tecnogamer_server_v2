@@ -2,5 +2,5 @@ export interface Mark {
     markId:number,
     nameMark: string
 }
-export type postMark = Pick<Mark, 'nameMark'>
-export type getMarkById = Pick<Mark, 'markId'>
+export type PostMark = Pick<Mark, 'nameMark'>
+export type GetMarkById = Pick<Mark, 'markId'>

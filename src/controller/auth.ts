@@ -1,35 +1,35 @@
 
 import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
-import { loginFn } from '../db/function/login/login';
-import { Login, UserInterface } from '../interfaces';
+import { serviceAuth } from '../services';
 import { sendOk, internalError, badRequest } from '../utils/http';
 import { createToken } from '../auth/createToken';
 import { createUserName } from '../utils/createUserName';
 import { userMappers } from '../mappers';
 import { createUserFn } from '../db/function/user';
+import {  RegisterUser } from '../interfaces';
 
 
 export const login = async (req: Request, res: Response) => {
     try {
 
-        const { email, password }: Login = req.body;
+        const { email, password } = req.body;
 
-        const {ok: okServie, result} = await loginFn(email.trim().toLocaleLowerCase());
+        const {ok: okServie, result} = await serviceAuth.loginFn({ email: email.trim().toLocaleLowerCase() });
 
-        if(!okServie) return badRequest(res, result.message, {});
+        if(!okServie) return badRequest(res, result.message, result);
 
-        const { password: passwordDB, ...resto } = result;
+        const { password: passwordDB, ...restoLogin } = result;
 
         const isPassValid = bcrypt.compareSync(password, passwordDB);
 
         if (!isPassValid) return badRequest(res, 'El correo o contraseña no son válidos', {});
         
-        const {ok, msg, token} = await createToken(resto.userid, resto.email, resto.typeuser);
+        const {ok, msg, token} = await createToken(restoLogin.userid, restoLogin.email, restoLogin.typeuser);
 
         if(!ok) return badRequest(res, msg, {});
         
-        sendOk(res, 'Login correcto', { ...resto, token });
+        sendOk(res, 'Login correcto', { ...restoLogin, token });
 
     } catch (error) {
         if (error instanceof Error) {
@@ -42,25 +42,25 @@ export const login = async (req: Request, res: Response) => {
 export const registerUser = async (req: Request, res: Response) => {
     try {
 
-        let {userName, firstName, lastName, password, typeUserId} = req.body;
+        const { firstName, lastName, password } = req.body;
 
-        userName = createUserName(firstName, lastName);
+        const userName = createUserName(firstName, lastName);
 
-        password = bcrypt.hashSync(password?.trim() || 'prueba', 10);
+        const passwordHash = bcrypt.hashSync(password?.trim(), 10);
 
-        typeUserId = 2;
-        
-        const {userId, ...resto} = userMappers({...req.body, userName, password, typeUserId});
-        
-        const {ok:okService, result} = await createUserFn(resto);
+        const registerUserMp = userMappers({...req.body, userName, passwordHash, typeUserId:2});
 
-        if(!okService) return badRequest(res, result.message, {});
+        const {ok:okService, result} = await serviceAuth.registerFn(registerUserMp);
 
-        const {ok, msg, token} = await createToken(result.user_id, result.email, result.type_user);
+        if(!okService) return badRequest(res, result.message, result);
+
+        const { user_id, email, type_user } = result.shift()
+
+        const {ok, msg, token} = await createToken(user_id, email, type_user);
 
         if(!ok) return badRequest(res, msg, {});
 
-        sendOk(res, 'Usuario creado correctamente', {...result, token}, 201);
+        sendOk(res, 'Usuario creado correctamente', {user_id, email, type_user, token}, 201);
 
     } catch (error) {
         if (error instanceof Error) {

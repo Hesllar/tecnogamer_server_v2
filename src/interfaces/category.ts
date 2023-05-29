@@ -3,5 +3,5 @@ export interface Category {
     nameCategory: string
 }
 
-export type postCategory = Pick<Category, 'nameCategory'>
-export type getCategoryById = Pick<Category, 'categoryId'>
+export type PostCategory = Pick<Category, 'nameCategory'>
+export type GetCategoryById = Pick<Category, 'categoryId'>

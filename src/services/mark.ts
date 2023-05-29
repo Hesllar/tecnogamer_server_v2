@@ -1,6 +1,6 @@
 import db from '../db/config';
 import { QueryTypes } from 'sequelize';
-import { ResponseService, postMark, getMarkById, Mark } from '../interfaces';
+import { ResponseService, PostMark, GetMarkById, Mark } from '../interfaces';
 
 
 
@@ -22,7 +22,7 @@ export const getMarksFn = async (): Promise<ResponseService> => {
 }
 
 
-export const getMarkByIdFn = async ({ markId }:getMarkById): Promise<ResponseService> => {
+export const getMarkByIdFn = async ({ markId }:GetMarkById): Promise<ResponseService> => {
     try {
         
         const resp = await db.query('SELECT * FROM fn_get_mark_by_id(?)', 
@@ -40,7 +40,7 @@ export const getMarkByIdFn = async ({ markId }:getMarkById): Promise<ResponseSer
     }
 }
 
-export const createMarkFn = async ({ nameMark }: postMark): Promise<ResponseService> => {
+export const createMarkFn = async ({ nameMark }: PostMark): Promise<ResponseService> => {
     
     try {
         const resp = await db.query('SELECT * FROM fn_create_mark(?)',

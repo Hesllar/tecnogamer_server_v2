@@ -1,6 +1,6 @@
-import { UserInterface} from '../interfaces';
+import { RegisterUser } from '../interfaces';
 
-export const userMappers = (userData: UserInterface) => {
+export const userMappers = (userData: RegisterUser) => {
     
     const { 
         firstName, 
@@ -8,12 +8,10 @@ export const userMappers = (userData: UserInterface) => {
         userName,
         email, 
         typeUserId,
-        userId,
         password
     } = userData;
     
     return {
-        userId, 
         firstName, 
         lastName, 
         userName, 
