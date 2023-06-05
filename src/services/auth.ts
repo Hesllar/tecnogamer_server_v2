@@ -1,41 +1,48 @@
 import db from '../db/config';
 import { QueryTypes } from 'sequelize';
-import { ResponseService, Login, RegisterUser } from '../interfaces';
+import { RegisterUser } from '../interfaces';
 import { lengthParams } from '../utils/lengthParams';
 
 
-export const loginFn = async ({ email }:Login): Promise<ResponseService> => {
+
+type typeValidateEmail = {
+    user_id: number;
+    email:string;
+    type_user:number;
+    password:string;
+}
+
+type typeCreateUser = {
+    user_id:number;
+    email:string;
+    type_user:number;
+}
+
+export const validateEmail = async (email: string):Promise<typeValidateEmail> => {
     try {
 
-        const resp = await db.query('SELECT * FROM fn_login(?)', { type: QueryTypes.SELECT, 
-            replacements: [email] });
+        const resultValidateEmail = await db.query<typeValidateEmail>('SELECT * FROM fn_validate_email(?)', 
+        { type: QueryTypes.SELECT, replacements: [email] });
+       
+        return resultValidateEmail[0];
         
-        return {
-            ok:true,
-            result:resp.shift()
-        };
     } catch (error) {
-        return {
-            ok:false,
-            result:error
-        };
+
+        throw error;
     }
 }
 
-export const registerFn = async ( user : RegisterUser): Promise<ResponseService> => {
+
+export const createUser = async ( user : RegisterUser): Promise<typeCreateUser> => {
     try {
 
-        const resp = await db.query(`SELECT * FROM fn_create_user(${lengthParams(Object.keys(user).length)})`, 
-        { type: QueryTypes.INSERT, replacements: Object.values(user) });
+        const resultCreateUser = await db.query(`SELECT * FROM fn_create_user(${lengthParams(Object.keys(user).length)})`, 
+        { type: QueryTypes.INSERT, replacements: Object.values(user) }) as unknown as typeCreateUser;
         
-        return {
-            ok:true,
-            result:resp.shift()
-        };
+        return resultCreateUser;
+     
     } catch (error) {
-        return {
-            ok:false,
-            result:error
-        };
+
+        throw error;
     }
 }

@@ -6,11 +6,9 @@ import { sendOk, internalError, badRequest } from '../utils/http';
 export const getCategories = async (req: Request, res: Response) => {
     try {
 
-        const {ok , result } = await serviceCategory.getCategoriesFn();
+        const getCategories = await serviceCategory.getCategoriesFn();
 
-        if(!ok) return badRequest(res, result.message, result);
-
-        sendOk(res, (result.length === 0) ? 'No hay categorías' : 'Categorías encontradas', result);
+        sendOk(res, (getCategories.length === 0) ? 'No hay categorías' : 'Categorías encontradas', getCategories);
 
     } catch (error) {
         if (error instanceof Error) {
@@ -25,11 +23,11 @@ export const getCategoryById = async (req: Request, res: Response) => {
 
         const { categoryId } = req.params;
 
-        const {ok , result } = await serviceCategory.getCategoryByIdFn({categoryId: +categoryId});
+        const getCategoryById = await serviceCategory.getCategoryByIdFn({categoryId: +categoryId});
+        
+        if(!getCategoryById) return badRequest(res,'No hay datos para esta categoría', {} );
 
-        if(!ok) return badRequest(res, result.message, result);
-
-        sendOk(res, (result.length === 0) ? 'No hay datos para esta categoría' : 'Datos encontrados', result);
+        sendOk(res,'Categoría encontrada', getCategoryById);
 
     } catch (error) {
         if (error instanceof Error) {
@@ -44,11 +42,9 @@ export const createCategory = async (req: Request, res: Response) => {
 
         const { nameCategory } = req.body;
 
-        const {ok , result } = await serviceCategory.createCategoryFn({nameCategory: nameCategory.trim()});
+        const createCategory = await serviceCategory.createCategoryFn({nameCategory: nameCategory.trim()});
 
-        if(!ok) return badRequest(res, result.message, result);
-
-        sendOk(res, 'Categoría creada correctamente', result.shift(), 201);
+        sendOk(res, 'Categoría creada correctamente', createCategory, 201);
 
     } catch (error) {
         if (error instanceof Error) {

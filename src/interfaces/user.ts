@@ -8,6 +8,7 @@ export interface UserInterface {
     password?: string,
 }
 
+
 export type Login =  Pick<UserInterface, 'email' | 'password'>;
 export type UpdateUser = Pick<UserInterface, 'userId' | 'firstName' | 'lastName' | 'userName'>;
 export type RegisterUser =  Omit<UserInterface, 'userId'>

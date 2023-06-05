@@ -1,51 +1,54 @@
 import db from '../db/config';
 import { QueryTypes } from 'sequelize';
-import { ResponseService, PostCategory, GetCategoryById, Category } from '../interfaces';
+import { PostCategory, GetCategoryById, Category } from '../interfaces';
 
-export const getCategoriesFn = async (): Promise<ResponseService> => {
+type typeGetCategories = {
+    category_id: number;
+    name_category: string;
+}
+
+type typeCreateCategory = {
+    name_category: string;
+}
+
+
+
+
+
+export const getCategoriesFn = async (): Promise<Array<typeGetCategories>> => {
     try {
-        const resp = await db.query('SELECT * FROM fn_get_categories()', { type: QueryTypes.SELECT });
-        return {
-            ok:true,
-            result:resp
-        };
+
+        const resultgetCategoriesFn = await db.query('SELECT * FROM fn_get_categories()',
+            { type: QueryTypes.SELECT }) as Array<typeGetCategories>;
+        
+        return resultgetCategoriesFn;
+
     } catch (error) {
-        return {
-            ok:false,
-            result:error
-        };
+        throw error;
     }
 }
 
-export const getCategoryByIdFn = async ({ categoryId }: GetCategoryById): Promise<ResponseService> => {
+export const getCategoryByIdFn = async ({ categoryId }: GetCategoryById): Promise<typeGetCategories> => {
     try {
-        const resp = await db.query('SELECT * FROM fn_get_category_by_id(?)', 
+        const resultGetCategoryById = await db.query<typeGetCategories>('SELECT * FROM fn_get_category_by_id(?)', 
         { type: QueryTypes.SELECT, replacements:[ categoryId ] });
-        return {
-            ok:true,
-            result:resp.shift()
-        };
+
+        return resultGetCategoryById[0];
+
     } catch (error) {
-        return {
-            ok:false,
-            result:error
-        };
+        throw error;
     }
 }
 
-export const createCategoryFn = async ({ nameCategory }:PostCategory): Promise<ResponseService> => {
+export const createCategoryFn = async ({ nameCategory }:PostCategory): Promise<typeCreateCategory> => {
     try {
+
         const resp = await db.query('SELECT * FROM fn_create_category(?)',
-            { type: QueryTypes.INSERT, replacements: [nameCategory] });
-        return {
-            ok:true,
-            result:resp.shift()
-        };
+            { type: QueryTypes.INSERT, replacements: [nameCategory] }) as unknown as typeCreateCategory;
+        console.log(resp);
+        return resp;
     } catch (error) {
-        return {
-            ok:false,
-            result:error
-        };
+        throw error;
     }
 }
 

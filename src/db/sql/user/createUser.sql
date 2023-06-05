@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION public.fn_create_user(IN p_first_name character varying,IN p_last_name character varying,IN p_user_name character varying,IN p_email character varying,IN p_password character varying,IN p_type_user_id integer)
+CREATE OR REPLACE FUNCTION fn_create_user(IN p_first_name character varying,IN p_last_name character varying,IN p_user_name character varying,IN p_email character varying,IN p_password character varying,IN p_type_user_id integer)
     RETURNS TABLE(user_id integer, email character varying, type_user integer)
     LANGUAGE 'plpgsql'
     VOLATILE

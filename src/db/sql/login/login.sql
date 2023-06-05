@@ -1,5 +1,5 @@
-CREATE OR REPLACE FUNCTION fn_login(p_email character varying)
-    RETURNS TABLE(userid integer, email character varying, typeUser integer, password character varying) 
+CREATE OR REPLACE FUNCTION fn_validate_email(p_email character varying)
+    RETURNS TABLE(user_id integer, email character varying, type_user integer, password character varying) 
     LANGUAGE 'plpgsql'
     COST 100
     VOLATILE PARALLEL UNSAFE

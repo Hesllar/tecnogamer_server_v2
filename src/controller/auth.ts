@@ -15,21 +15,21 @@ export const login = async (req: Request, res: Response) => {
 
         const { email, password } = req.body;
 
-        const {ok: okServie, result} = await serviceAuth.loginFn({ email: email.trim().toLocaleLowerCase() });
+        const getUserByEmail = await serviceAuth.validateEmail(email.trim().toLocaleLowerCase());
 
-        if(!okServie) return badRequest(res, result.message, result);
+        const { password: passwordDB, ...restoLogin } = getUserByEmail;
 
-        const { password: passwordDB, ...restoLogin } = result;
+        const {user_id: userId, type_user: typeUser} = restoLogin;
 
-        const isPassValid = bcrypt.compareSync(password, passwordDB);
+        const isValidPassword = bcrypt.compareSync(password, passwordDB);
 
-        if (!isPassValid) return badRequest(res, 'El correo o contraseña no son válidos', {});
+        if (!isValidPassword) return badRequest(res, 'El correo o contraseña no son válidos', {});
         
-        const {ok, msg, token} = await createToken(restoLogin.userid, restoLogin.email, restoLogin.typeuser);
+        const {ok, msg, token} = await createToken(userId, restoLogin.email, typeUser);
 
         if(!ok) return badRequest(res, msg, {});
         
-        sendOk(res, 'Login correcto', { ...restoLogin, token });
+        sendOk(res, 'Login correcto', {userId, email: restoLogin.email,  typeUser, token });
 
     } catch (error) {
         if (error instanceof Error) {
@@ -41,27 +41,25 @@ export const login = async (req: Request, res: Response) => {
 
 export const registerUser = async (req: Request, res: Response) => {
     try {
-
+        
         const { firstName, lastName, password } = req.body;
 
         const userName = createUserName(firstName, lastName);
 
         const passwordHash = bcrypt.hashSync(password?.trim(), 10);
 
-        const registerUserMp = userMappers({...req.body, userName, passwordHash, typeUserId:2});
+        const createUserMappers = userMappers({...req.body, userName, passwordHash, typeUserId:2});
+        
+        const createUser = await serviceAuth.createUser(createUserMappers);
+        
+        const { user_id: userId, email, type_user:typeUser } = createUser;
 
-        const {ok:okService, result} = await serviceAuth.registerFn(registerUserMp);
-
-        if(!okService) return badRequest(res, result.message, result);
-
-        const { user_id, email, type_user } = result.shift()
-
-        const {ok, msg, token} = await createToken(user_id, email, type_user);
+        const {ok, msg, token} = await createToken(userId, email, typeUser);
 
         if(!ok) return badRequest(res, msg, {});
 
-        sendOk(res, 'Usuario creado correctamente', {user_id, email, type_user, token}, 201);
-
+        sendOk(res, 'Usuario creado correctamente', {userId, email, typeUser, token}, 201);
+        
     } catch (error) {
         if (error instanceof Error) {
             internalError(res, `${error.message || 'Error no contrado'}`, error);

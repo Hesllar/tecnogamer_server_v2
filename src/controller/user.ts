@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import { getUsersFn, getUserByIdFn, createUserFn, updateUserFn, updatePasswordUserFn } from '../db/function/user';
 import { sendOk, internalError, badRequest } from '../utils/http';
-import { updateUser as structUser } from '../interfaces';
 import { createUserName } from '../utils/createUserName';
 import { userMappers } from '../mappers';
 import { createToken } from '../auth/createToken';
