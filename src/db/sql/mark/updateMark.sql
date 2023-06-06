@@ -1,7 +1,7 @@
 CREATE OR REPLACE FUNCTION fn_update_mark(
 	p_markid integer,
 	p_namemark character varying)
-    RETURNS TABLE(namemark character varying) 
+    RETURNS TABLE(name_mark character varying) 
     LANGUAGE 'plpgsql'
     COST 100
     VOLATILE PARALLEL UNSAFE

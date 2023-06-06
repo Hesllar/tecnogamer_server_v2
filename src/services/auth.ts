@@ -36,10 +36,10 @@ export const validateEmail = async (email: string):Promise<typeValidateEmail> =>
 export const createUser = async ( user : RegisterUser): Promise<typeCreateUser> => {
     try {
 
-        const resultCreateUser = await db.query(`SELECT * FROM fn_create_user(${lengthParams(Object.keys(user).length)})`, 
-        { type: QueryTypes.INSERT, replacements: Object.values(user) }) as unknown as typeCreateUser;
+        const resultCreateUser = await db.query<typeCreateUser>(`SELECT * FROM fn_create_user(${lengthParams(Object.keys(user).length)})`, 
+        { type: QueryTypes.SELECT, replacements: Object.values(user) });
         
-        return resultCreateUser;
+        return resultCreateUser[0];
      
     } catch (error) {
 

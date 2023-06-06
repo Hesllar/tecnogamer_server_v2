@@ -1,6 +1,6 @@
 CREATE OR REPLACE FUNCTION fn_create_category(
 	p_namecategory character varying)
-    RETURNS TABLE(namecategory character varying) 
+    RETURNS TABLE(name_category character varying) 
     LANGUAGE 'plpgsql'
     COST 100
     VOLATILE PARALLEL UNSAFE

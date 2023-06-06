@@ -1,6 +1,6 @@
 CREATE OR REPLACE FUNCTION fn_create_mark(
 	p_namemark character varying)
-    RETURNS TABLE(namemark character varying) 
+    RETURNS TABLE(name_mark character varying) 
     LANGUAGE 'plpgsql'
     COST 100
     VOLATILE PARALLEL UNSAFE

@@ -8,11 +8,17 @@ import { sendOk, internalError, badRequest } from '../utils/http';
 export const getMarks = async (req: Request, res: Response) => {
     try {
 
-        const {ok, result} = await serviceMark.getMarksFn();
+        const getMarks = await serviceMark.getMarksFn();
 
-        if(!ok) return badRequest(res, result.message, result);
-        
-        sendOk(res, (result.length === 0) ? 'No hay marcas' : 'Marcas encontradas', result);
+
+        const structure = getMarks.map(({mark_id, name_mark}) => {
+            return {
+                markId: mark_id,
+                nameMark:name_mark
+            }
+        });
+
+        sendOk(res, (getMarks.length === 0) ? 'No hay marcas' : 'Marcas encontradas', structure);
 
     } catch (error) {
         if (error instanceof Error) {
@@ -26,11 +32,15 @@ export const getMarkById = async (req: Request, res: Response) => {
 
         const { markId } = req.params;
 
-        const { ok, result } = await serviceMark.getMarkByIdFn({ markId: +markId });
+        const getMarkById = await serviceMark.getMarkByIdFn({ markId: +markId });
 
-        if(!ok) return badRequest(res, result.message, result);
+        if(!getMarkById) return badRequest(res,'No hay datos para esta marca', {} );
 
-        sendOk(res, (result.length === 0) ? 'No hay datos para esta marca' : 'Datos encontrados', result);
+        sendOk(res, 'Datos encontrados', 
+        {
+            markId:getMarkById.mark_id,
+            nameMark: getMarkById.name_mark
+        });
 
     } catch (error) {
         if (error instanceof Error) {
@@ -45,11 +55,9 @@ export const createMark = async (req: Request, res: Response) => {
 
         const { nameMark } = req.body;
 
-        const { ok,  result } = await serviceMark.createMarkFn({ nameMark: nameMark.trim() });
+        const createMark = await serviceMark.createMarkFn({ nameMark: nameMark.trim() });
 
-        if(!ok) return badRequest(res, result.message, result);
-
-        sendOk(res, 'Marca creada correctamente', result.shift(), 201);
+        sendOk(res, 'Marca creada correctamente', {nameMark: createMark.name_mark}, 201);
 
     } catch (error) {
         if (error instanceof Error) {
@@ -71,11 +79,9 @@ export const updateMark = async (req: Request, res: Response) => {
             nameMark:nameMark.trim()
         }
 
-        const { ok, result } = await serviceMark.updateMarkFn(bodyMark);
+        const updateMark = await serviceMark.updateMarkFn(bodyMark);
 
-        if(!ok) return badRequest(res, result.message, result);
-
-        sendOk(res, 'Marca actualizada correctamente', result.shift(), 201);
+        sendOk(res, 'Marca actualizada correctamente', {nameMark: updateMark.name_mark}, 201);
 
     } catch (error) {
         if (error instanceof Error) {

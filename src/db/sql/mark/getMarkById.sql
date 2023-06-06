@@ -1,7 +1,7 @@
 CREATE OR REPLACE FUNCTION fn_get_mark_by_id(
 	p_markId integer
 	)
-    RETURNS TABLE(markid integer, namemark character varying) 
+    RETURNS TABLE(mark_id integer, name_mark character varying) 
     LANGUAGE 'plpgsql'
     COST 100
     VOLATILE PARALLEL UNSAFE

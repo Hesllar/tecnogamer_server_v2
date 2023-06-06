@@ -1,76 +1,64 @@
 import db from '../db/config';
 import { QueryTypes } from 'sequelize';
-import { ResponseService, PostMark, GetMarkById, Mark } from '../interfaces';
+import { PostMark, GetMarkById, Mark } from '../interfaces';
 
 
+type typeGetMarks = {
+    mark_id: number;
+    name_mark:string;
+}
 
-export const getMarksFn = async (): Promise<ResponseService> => {
+type typUpsertMark = {
+    name_mark: string;
+}
+
+export const getMarksFn = async (): Promise<Array<typeGetMarks>> => {
     try {
         
-        const resp = await db.query('SELECT * FROM fn_get_marks()', { type: QueryTypes.SELECT });
+        const resultGetMarksFn = await db.query('SELECT * FROM fn_get_marks()', 
+        { type: QueryTypes.SELECT }) as Array<typeGetMarks>;;
         
-        return {
-            ok:true,
-            result:resp
-        };
+        return  resultGetMarksFn;
+
     } catch (error) {
-        return {
-            ok:false,
-            result:error
-        }
+        throw error;
     }
 }
 
 
-export const getMarkByIdFn = async ({ markId }:GetMarkById): Promise<ResponseService> => {
+export const getMarkByIdFn = async ({ markId }:GetMarkById): Promise<typeGetMarks> => {
     try {
         
-        const resp = await db.query('SELECT * FROM fn_get_mark_by_id(?)', 
+        const resultGetMarkByIdFn = await db.query<typeGetMarks>('SELECT * FROM fn_get_mark_by_id(?)', 
         { type: QueryTypes.SELECT, replacements:[markId] });
         
-        return {
-            ok:true,
-            result:resp.shift()
-        };
+       return resultGetMarkByIdFn[0];
+
     } catch (error) {
-        return {
-            ok:true,
-            result:error
-        };
+        throw error;
     }
 }
 
-export const createMarkFn = async ({ nameMark }: PostMark): Promise<ResponseService> => {
+export const createMarkFn = async ({ nameMark }: PostMark): Promise<typUpsertMark> => {
     
     try {
-        const resp = await db.query('SELECT * FROM fn_create_mark(?)',
-            { type: QueryTypes.INSERT, replacements: [nameMark] });
+        const resultCreateMarkFn = await db.query<typUpsertMark>('SELECT * FROM fn_create_mark(?)',
+            { type: QueryTypes.SELECT, replacements: [nameMark] });
         
-        return {
-            ok:true,
-            result:resp.shift()
-        };
+        return resultCreateMarkFn[0];
     } catch (error) {
-            return {
-                ok:false,
-                result:error
-            };
+        throw error;
         
     }
 }
 
-export const updateMarkFn = async ({ markId,  nameMark }:Mark): Promise<ResponseService> => {
+export const updateMarkFn = async ({ markId,  nameMark }:Mark): Promise<typUpsertMark> => {
     try {
-        const resp = await db.query('SELECT * FROM fn_update_mark( ?, ?)',
-            { type: QueryTypes.UPDATE, replacements: [markId, nameMark] });
-        return {
-            ok:true,
-            result:resp.shift()
-        }
+        const resultUpdateMarkFn = await db.query<typUpsertMark>('SELECT * FROM fn_update_mark( ?, ?)',
+            { type: QueryTypes.SELECT, replacements: [markId, nameMark] });
+
+        return resultUpdateMarkFn[0];
     } catch (error) {
-        return {
-            ok:false,
-            result:error
-        };
+        throw error;
     }
 }

@@ -11,7 +11,7 @@ AS $BODY$
     BEGIN
         
         RETURN QUERY
-          SELECT * FROM categories  where category_id = p_categoryid;
+          SELECT * FROM categories c where c.category_id = p_categoryid;
         exception 
         when others then 
             RAISE;

@@ -1,7 +1,7 @@
 CREATE OR REPLACE FUNCTION fn_update_category(
 	p_categoryid integer,
 	p_namecategory character varying)
-    RETURNS TABLE(namecategory character varying) 
+    RETURNS TABLE(name_category character varying) 
     LANGUAGE 'plpgsql'
     COST 100
     VOLATILE PARALLEL UNSAFE
