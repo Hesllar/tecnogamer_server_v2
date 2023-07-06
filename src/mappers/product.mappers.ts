@@ -4,25 +4,25 @@ import { ProductInterface } from '../interfaces';
 
 export const productMappers = (userData: ProductInterface) => {
     const {
-            productId,
-            nameProduct,
+            product_id,
+            name_product,
             stock,
             price,
             description,
             image,
-            markId,
-            categoryId
+            mark_id,
+            category_id
         } = userData;
 
         return{
-            productId,
-            nameProduct,
+            product_id,
+            name_product,
             stock,
             price,
             description,
             image,
-            markId,
-            categoryId
+            mark_id,
+            category_id
         }
 
 }

@@ -1,30 +1,16 @@
 import db from '../db/config';
 import { QueryTypes } from 'sequelize';
-import { RegisterUser } from '../interfaces';
-import { lengthParams } from '../utils/lengthParams';
+import { RegisterUser, OutPutLogin, OutPutRegisterUser } from '../interfaces';
+import { lengthParams} from '../utils/lengthParams';
 
 
-
-type typeValidateEmail = {
-    user_id: number;
-    email:string;
-    type_user:number;
-    password:string;
-}
-
-type typeCreateUser = {
-    user_id:number;
-    email:string;
-    type_user:number;
-}
-
-export const validateEmail = async (email: string):Promise<typeValidateEmail> => {
+export const validateEmail = async (email: string):Promise<OutPutLogin> => {
     try {
 
-        const resultValidateEmail = await db.query<typeValidateEmail>('SELECT * FROM fn_validate_email(?)', 
+        const resultValidateEmail = await db.query('SELECT * FROM fn_validate_email(?)', 
         { type: QueryTypes.SELECT, replacements: [email] });
        
-        return resultValidateEmail[0];
+        return resultValidateEmail.pop() as OutPutLogin;
         
     } catch (error) {
 
@@ -33,13 +19,13 @@ export const validateEmail = async (email: string):Promise<typeValidateEmail> =>
 }
 
 
-export const createUser = async ( user : RegisterUser): Promise<typeCreateUser> => {
+export const createUser = async ( user : RegisterUser): Promise<OutPutRegisterUser> => {
     try {
 
-        const resultCreateUser = await db.query<typeCreateUser>(`SELECT * FROM fn_create_user(${lengthParams(Object.keys(user).length)})`, 
+        const resultCreateUser = await db.query(`SELECT * FROM fn_create_user(${lengthParams(Object.keys(user).length)})`, 
         { type: QueryTypes.SELECT, replacements: Object.values(user) });
         
-        return resultCreateUser[0];
+        return resultCreateUser.pop() as OutPutRegisterUser;
      
     } catch (error) {
 

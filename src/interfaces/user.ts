@@ -1,14 +1,15 @@
 export interface UserInterface {
-    firstName: string,
-    lastName: string,
-    userName: string,
+    first_name: string,
+    last_name: string,
+    user_name: string,
     email: string,
-    typeUserId: number
-    userId?: number,
-    password?: string,
+    type_user: number
+    user_id: number,
+    password: string,
 }
 
 
-export type Login =  Pick<UserInterface, 'email' | 'password'>;
+export type OutPutLogin =  Pick<UserInterface, 'user_id' | 'email' | 'password' | 'type_user'>;
+export type OutPutRegisterUser = Pick<UserInterface, 'user_id' | 'email' | 'type_user'>
 export type UpdateUser = Pick<UserInterface, 'userId' | 'firstName' | 'lastName' | 'userName'>;
-export type RegisterUser =  Omit<UserInterface, 'userId'>
+export type RegisterUser =  Omit<UserInterface, 'user_id'>

@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION fn_delete_product(f_product_id integer)
+CREATE OR REPLACE FUNCTION fn_delete_product(p_product_id integer)
 RETURNS TABLE(rows_affected integer) 
 LANGUAGE 'plpgsql'
 COST 100
@@ -10,11 +10,11 @@ DECLARE
 v_row_count integer;
 BEGIN
 	
-	if(exists(select dt.product_id from detail_sales dt where product_id = f_product_id))then
-		raise 'Este producto nose puede eliminar';
+	if(exists(select dt.product_id from detail_sales dt where product_id = p_product_id))then
+		raise 'Este producto no se puede eliminar';
 	end if;
 	
-	delete from products p where p.product_id = f_product_id;
+	delete from products p where p.product_id = p_product_id;
 
 	GET DIAGNOSTICS v_row_count = ROW_COUNT;
 	

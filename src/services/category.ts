@@ -1,64 +1,62 @@
 import db from '../db/config';
 import { QueryTypes } from 'sequelize';
-import { PostCategory, GetCategoryById, Category } from '../interfaces';
+import { PostCategory, 
+    GetCategoryById, 
+    Category, 
+    OutPutGetCategories,
+    OutPutGetCategoryById,
+    OutPutPostCategory
+ } from '../interfaces';
 
-type typeGetCategories = {
-    category_id: number;
-    name_category: string;
-}
-
-type typeUpsertCategory = {
-    name_category: string;
-}
-
-
-
-
-
-export const getCategoriesFn = async (): Promise<Array<typeGetCategories>> => {
+export const getCategoriesFn = async (): Promise<Array<OutPutGetCategories>> => {
     try {
 
         const resultgetCategoriesFn = await db.query('SELECT * FROM fn_get_categories()',
-            { type: QueryTypes.SELECT }) as Array<typeGetCategories>;
+            { type: QueryTypes.SELECT });
         
-        return resultgetCategoriesFn;
+        return resultgetCategoriesFn as Array<OutPutGetCategories>; 
 
     } catch (error) {
         throw error;
     }
 }
 
-export const getCategoryByIdFn = async ({ categoryId }: GetCategoryById): Promise<typeGetCategories> => {
+export const getCategoryByIdFn = async ( category_id: number): Promise<OutPutGetCategoryById> => {
     try {
-        const resultGetCategoryById = await db.query<typeGetCategories>('SELECT * FROM fn_get_category_by_id(?)', 
-        { type: QueryTypes.SELECT, replacements:[ categoryId ] });
+        const resultGetCategoryById = await db.query('SELECT * FROM fn_get_category_by_id(?)', 
+        { type: QueryTypes.SELECT, replacements:[ category_id ] });
 
-        return resultGetCategoryById[0];
+        return resultGetCategoryById.pop() as OutPutGetCategoryById;
 
     } catch (error) {
         throw error;
     }
 }
 
-export const createCategoryFn = async ({ nameCategory }:PostCategory): Promise<typeUpsertCategory> => {
+export const createCategoryFn = async ( name_category: string ): Promise<OutPutPostCategory> => {
     try {
 
-        const resultCreateCategoryFn = await db.query<typeUpsertCategory>('SELECT * FROM fn_create_category(?)',
-            { type: QueryTypes.SELECT, replacements: [nameCategory] });
-        
-        return resultCreateCategoryFn[0];
+        const resultCreateCategoryFn = await db.query('SELECT * FROM fn_create_category(?)',
+            { type: QueryTypes.INSERT, replacements: [name_category] });
+
+        const getValue = resultCreateCategoryFn.shift() as unknown as Array<OutPutPostCategory>;
+      
+        return getValue.shift() as OutPutPostCategory;
+
     } catch (error) {
         throw error;
     }
 }
 
-export const updateCategoryFn = async ({categoryId, nameCategory}: Category): Promise<typeUpsertCategory> => {
+export const updateCategoryFn = async (category_id :number, name_category: string): Promise<OutPutPostCategory> => {
     try {
 
-        const resultUpdateCategoryFn = await db.query<typeUpsertCategory>('SELECT * FROM fn_update_category(?, ?)',
-            { type: QueryTypes.SELECT, replacements: [categoryId, nameCategory] });
-        
-        return resultUpdateCategoryFn[0];
+        const resultUpdateCategoryFn = await db.query('SELECT * FROM fn_update_category(?, ?)',
+            { type: QueryTypes.UPDATE, replacements: [category_id, name_category] });
+
+            const getValue = resultUpdateCategoryFn.shift() as unknown as Array<OutPutPostCategory>;
+
+            return getValue.shift() as OutPutPostCategory;
     } catch (error) {
         throw error;
     }

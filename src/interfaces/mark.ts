@@ -1,6 +1,13 @@
 export interface Mark {
-    markId:number,
-    nameMark: string
+    mark_id:number,
+    name_mark: string
 }
-export type PostMark = Pick<Mark, 'nameMark'>
-export type GetMarkById = Pick<Mark, 'markId'>
+
+export type OutPutGetMarks = Pick<Mark, 'mark_id' | 'name_mark'>
+export type OutPutGetMarkById = Pick<Mark, 'mark_id' | 'name_mark'>
+export type OutPutPostMark = Pick<Mark, 'name_mark'>
+export type OutPutPutMark = Pick<Mark, 'name_mark'>
+export type PostMark = Pick<Mark, 'name_mark'>
+export type GetMarkById = Pick<Mark, 'mark_id'>
+
+

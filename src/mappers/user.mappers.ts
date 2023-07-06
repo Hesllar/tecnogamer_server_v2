@@ -3,20 +3,20 @@ import { RegisterUser } from '../interfaces';
 export const userMappers = (userData: RegisterUser) => {
     
     const { 
-        firstName, 
-        lastName, 
-        userName,
+        first_name, 
+        last_name, 
+        user_name,
         email, 
-        typeUserId,
+        type_user,
         password
     } = userData;
     
     return {
-        firstName, 
-        lastName, 
-        userName, 
+        first_name, 
+        last_name, 
+        user_name, 
         email: (email) && email.toLowerCase(), 
         password, 
-        typeUserId
+        type_user
     }
 }

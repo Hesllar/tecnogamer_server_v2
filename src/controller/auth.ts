@@ -48,7 +48,13 @@ export const registerUser = async (req: Request, res: Response) => {
 
         const passwordHash = bcrypt.hashSync(password?.trim(), 10);
 
-        const createUserMappers = userMappers({...req.body, userName, passwordHash, typeUserId:2});
+        const createUserMappers = userMappers({
+            first_name:firstName, 
+            last_name:lastName,
+            user_name:userName,
+            email: req.body.email, 
+            password:passwordHash, 
+            type_user:2});
         
         const createUser = await serviceAuth.createUser(createUserMappers);
         

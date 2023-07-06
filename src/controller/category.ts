@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { serviceCategory } from '../services';
-import { Category } from '../interfaces';
+import { Category, OutPutGetCategories, OutPutGetCategoryById, OutPutPostCategory } from '../interfaces';
 import { sendOk, internalError, badRequest } from '../utils/http';
 
 export const getCategories = async (req: Request, res: Response) => {
@@ -8,7 +8,7 @@ export const getCategories = async (req: Request, res: Response) => {
 
         const getCategories = await serviceCategory.getCategoriesFn();
         
-        const structure = getCategories.map(({category_id, name_category}) => {
+        const structure = getCategories.map(({category_id,name_category}: OutPutGetCategories) => {
             return {
                 categoryId: category_id,
                 nameCategory:name_category
@@ -30,7 +30,7 @@ export const getCategoryById = async (req: Request, res: Response) => {
 
         const { categoryId } = req.params;
 
-        const getCategoryById = await serviceCategory.getCategoryByIdFn({categoryId: +categoryId});
+        const getCategoryById = await serviceCategory.getCategoryByIdFn(+categoryId);
         
         if(!getCategoryById) return badRequest(res,'No hay datos para esta categoría', {} );
 
@@ -52,8 +52,8 @@ export const createCategory = async (req: Request, res: Response) => {
 
         const { nameCategory } = req.body;
 
-        const createCategory = await serviceCategory.createCategoryFn({nameCategory: nameCategory.trim()});
-
+        const createCategory = await serviceCategory.createCategoryFn(nameCategory.trim());
+        
         sendOk(res, 'Categoría creada correctamente', {nameCategory:createCategory.name_category}, 201);
 
     } catch (error) {
@@ -70,13 +70,8 @@ export const updateCategory = async (req: Request, res: Response) => {
 
         const { nameCategory } = req.body;
 
-        const bodyCategory : Category = {
-            categoryId: +categoryId,
-            nameCategory
-        }
-  
-        const updateCategory = await serviceCategory.updateCategoryFn(bodyCategory);
-
+        const updateCategory  = await serviceCategory.updateCategoryFn(+categoryId, nameCategory);
+        
         sendOk(res, 'Categoría actualizada correctamente', {nameCategory: updateCategory.name_category}, 201);
 
     } catch (error) {

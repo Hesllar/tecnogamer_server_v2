@@ -32,8 +32,8 @@ export const getMarkById = async (req: Request, res: Response) => {
 
         const { markId } = req.params;
 
-        const getMarkById = await serviceMark.getMarkByIdFn({ markId: +markId });
-
+        const getMarkById = await serviceMark.getMarkByIdFn({ mark_id: +markId });
+        
         if(!getMarkById) return badRequest(res,'No hay datos para esta marca', {} );
 
         sendOk(res, 'Datos encontrados', 
@@ -55,7 +55,7 @@ export const createMark = async (req: Request, res: Response) => {
 
         const { nameMark } = req.body;
 
-        const createMark = await serviceMark.createMarkFn({ nameMark: nameMark.trim() });
+        const createMark = await serviceMark.createMarkFn({ name_mark: nameMark.trim() });
 
         sendOk(res, 'Marca creada correctamente', {nameMark: createMark.name_mark}, 201);
 
@@ -75,8 +75,8 @@ export const updateMark = async (req: Request, res: Response) => {
         const { nameMark } = req.body;
 
         const bodyMark : Mark = {
-            markId: +markId,
-            nameMark:nameMark.trim()
+            mark_id: +markId,
+            name_mark:nameMark.trim()
         }
 
         const updateMark = await serviceMark.updateMarkFn(bodyMark);
