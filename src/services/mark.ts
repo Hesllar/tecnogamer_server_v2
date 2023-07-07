@@ -14,9 +14,9 @@ export const getMarksFn = async (): Promise<Array<OutPutGetMarks>> => {
     try {
         
         const resultGetMarksFn = await db.query('SELECT * FROM fn_get_marks()', 
-        { type: QueryTypes.SELECT }) as Array<OutPutGetMarks>;
+        { type: QueryTypes.SELECT }); 
         
-        return  resultGetMarksFn;
+        return  resultGetMarksFn as Array<OutPutGetMarks>;
 
     } catch (error) {
         throw error;
@@ -27,10 +27,10 @@ export const getMarksFn = async (): Promise<Array<OutPutGetMarks>> => {
 export const getMarkByIdFn = async ({ mark_id }:GetMarkById): Promise<OutPutGetMarkById> => {
     try {
         
-        const resultGetMarkByIdFn = await db.query<OutPutGetMarkById>('SELECT * FROM fn_get_mark_by_id(?)', 
+        const resultGetMarkByIdFn = await db.query('SELECT * FROM fn_get_mark_by_id(?)', 
         { type: QueryTypes.SELECT, replacements:[mark_id] });
         
-       return resultGetMarkByIdFn[0];
+       return resultGetMarkByIdFn.pop() as  OutPutGetMarkById;
 
     } catch (error) {
         throw error;
@@ -40,10 +40,13 @@ export const getMarkByIdFn = async ({ mark_id }:GetMarkById): Promise<OutPutGetM
 export const createMarkFn = async ({ name_mark }: PostMark): Promise<OutPutPostMark> => {
     
     try {
-        const resultCreateMarkFn = await db.query<OutPutPostMark>('SELECT * FROM fn_create_mark(?)',
-            { type: QueryTypes.SELECT, replacements: [name_mark] });
+        const resultCreateMarkFn = await db.query('SELECT * FROM fn_create_mark(?)',
+            { type: QueryTypes.INSERT, replacements: [name_mark] });
+
+        const getValue = resultCreateMarkFn.shift() as unknown as Array<OutPutPostMark>;
         
-        return resultCreateMarkFn[0];
+        return getValue.shift() as OutPutPostMark;
+
     } catch (error) {
         throw error;
         
@@ -52,10 +55,13 @@ export const createMarkFn = async ({ name_mark }: PostMark): Promise<OutPutPostM
 
 export const updateMarkFn = async ({ mark_id,  name_mark }:Mark): Promise<OutPutPutMark> => {
     try {
-        const resultUpdateMarkFn = await db.query<OutPutPutMark>('SELECT * FROM fn_update_mark( ?, ?)',
-            { type: QueryTypes.SELECT, replacements: [mark_id, name_mark] });
+        const resultUpdateMarkFn = await db.query('SELECT * FROM fn_update_mark( ?, ?)',
+            { type: QueryTypes.UPDATE, replacements: [mark_id, name_mark] });
 
-        return resultUpdateMarkFn[0];
+        const getValue = resultUpdateMarkFn.shift() as unknown as Array<OutPutPutMark>;
+
+        return getValue.shift() as OutPutPutMark;
+        
     } catch (error) {
         throw error;
     }

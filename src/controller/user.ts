@@ -1,19 +1,27 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
-import { getUsersFn, getUserByIdFn, createUserFn, updateUserFn, updatePasswordUserFn } from '../db/function/user';
 import { sendOk, internalError, badRequest } from '../utils/http';
-import { createUserName } from '../utils/createUserName';
 import { userMappers } from '../mappers';
-import { createToken } from '../auth/createToken';
+import { serviceUser } from '../services';
+
 
 export const getUsers = async (req: Request, res: Response) => {
     try {
       
-        const {ok, result} = await getUsersFn();
+        const resultGetUsersAllFn = await serviceUser.getUsersFn();
 
-        if(!ok) return badRequest(res, result.message, {});
-
-        sendOk(res, (result.length === 0) ? 'No hay usuarios' : 'Usuarios encontrados', result, 201);
+        const newStructure = resultGetUsersAllFn.map( user =>{
+            return{
+                userId: user.user_id,
+                firstName: user.first_name,
+                lastName: user.last_name,
+                userName: user.user_name,
+                email: user.email,
+                typeUserId: user.type_user
+            }
+        });
+        
+        sendOk(res, (resultGetUsersAllFn.length === 0) ? 'No hay usuarios' : 'Usuarios encontrados', newStructure);
 
     } catch (error) {
         if (error instanceof Error) {
@@ -27,11 +35,22 @@ export const getUsersById = async (req: Request, res: Response) => {
     try {
         const { userId } = req.params;
 
-        const {ok, result} = await getUserByIdFn(+userId);
-
-        if(!ok) return badRequest(res, result.message, {});
+        const resultGetUserById = await serviceUser.getUserByIdFn(+userId);
         
-        sendOk(res, (result.length === 0) ? 'No hay datos para este usuario' : 'Datos encontrados', result, 201);
+        if(!resultGetUserById) return badRequest(res,'No hay datos para este usuario', {} );
+        
+        const {user_id, first_name, last_name, user_name, email, type_user } = resultGetUserById;
+
+        const newStructure = {
+            userId: user_id,
+            firstName: first_name,
+            lastName: last_name,
+            userName: user_name,
+            email: email,
+            typeUserId: type_user
+        }
+
+        sendOk(res,'Usuario encontrado',newStructure);
 
     } catch (error) {
         if (error instanceof Error) {
@@ -43,13 +62,26 @@ export const getUsersById = async (req: Request, res: Response) => {
 export const updateUser = async (req: Request, res: Response) => {
     try {
 
-        const { userId, firstName, lastName, userName} : structUser = userMappers({ ...req.params, ...req.body});
+        const { firstName, lastName, userName } = req.body;
+
+        const { userId } = req.params;
+
+        const {first_name, last_name, user_name } = userMappers({
+            first_name: firstName,
+            last_name: lastName,
+            user_name: userName,
+            email: '',
+            password: '',
+            type_user: 0
+        }); 
     
-        const {ok, result} = await updateUserFn({userId, firstName, lastName, userName});
+        const resultUpdateUser = await serviceUser.updateUserFn({ user_id: +userId, first_name, last_name, user_name});
 
-        if(!ok) return badRequest(res, result.message, {});
-
-        sendOk(res, 'Usuario actualizado correctamente', result, 201);
+        sendOk(res, 
+            (resultUpdateUser.rows_affected > 0) 
+                ? 'Usuario actualizado correctamente'
+                : 'No hay nuevas modificaciones para este usuario',
+        resultUpdateUser, 201);
 
     } catch (error) {
         if (error instanceof Error) {
@@ -67,11 +99,9 @@ export const updatePassword = async (req: Request, res: Response) => {
 
         const passHash = bcrypt.hashSync(password.trim(), 10);
         
-        const {ok, result} = await updatePasswordUserFn(emailUser.trim(), passHash);
+        const resultUpdatePasswordUser = await serviceUser.updatePasswordUserFn(emailUser.trim(), passHash);
 
-        if(!ok) return badRequest(res, result.message, {});
-
-        sendOk(res, 'Contraseña actualizada correctamente', result, 201);
+        sendOk(res, 'Contraseña actualizada correctamente', resultUpdatePasswordUser, 201);
 
     } catch (error) {
         if (error instanceof Error) {
