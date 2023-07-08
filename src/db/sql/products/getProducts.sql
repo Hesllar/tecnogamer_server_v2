@@ -6,7 +6,7 @@ CREATE OR REPLACE FUNCTION fn_get_products()
     VOLATILE PARALLEL UNSAFE
     ROWS 1000
 
-AS $BODY$
+AS $function$
     BEGIN
 		
         RETURN QUERY
@@ -15,4 +15,4 @@ AS $BODY$
 		WHEN OTHERS THEN 
             RAISE;
     END;
-$BODY$;
+$function$;

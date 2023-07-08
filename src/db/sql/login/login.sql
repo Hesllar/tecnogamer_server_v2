@@ -5,7 +5,7 @@ CREATE OR REPLACE FUNCTION fn_validate_email(p_email character varying)
     VOLATILE PARALLEL UNSAFE
     ROWS 1000
 
-AS $BODY$
+AS $function$
     BEGIN
 		
 		IF(NOT EXISTS(SELECT u.email FROM users u WHERE u.email = p_email))THEN
@@ -19,4 +19,4 @@ AS $BODY$
 		WHEN OTHERS THEN 
             RAISE;
     END;
-$BODY$;
+$function$;

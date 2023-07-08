@@ -13,7 +13,7 @@ COST 100
 VOLATILE PARALLEL UNSAFE
 ROWS 1000
 
-AS $BODY$
+AS $function$
 DECLARE
 v_last_id integer;
 BEGIN
@@ -37,4 +37,4 @@ BEGIN
 	WHEN OTHERS THEN 
 		RAISE;
 END;
-$BODY$;
+$function$;

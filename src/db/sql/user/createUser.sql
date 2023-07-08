@@ -5,7 +5,7 @@ CREATE OR REPLACE FUNCTION fn_create_user(IN p_first_name character varying,IN p
     PARALLEL UNSAFE
     COST 100    ROWS 1000 
     
-AS $BODY$
+AS $function$
 DECLARE
 v_user_name varchar;
 v_random varchar;
@@ -34,4 +34,4 @@ v_last_user_id integer;
 		WHEN OTHERS THEN 
             RAISE;
     END;
-$BODY$;
+$function$;

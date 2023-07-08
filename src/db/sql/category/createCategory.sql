@@ -6,7 +6,7 @@ CREATE OR REPLACE FUNCTION fn_create_category(
     VOLATILE PARALLEL UNSAFE
     ROWS 1000
 
-AS $BODY$
+AS $function$
     BEGIN
 		
 		IF(exists (select c.name_category from categories c WHERE c.name_category = p_namecategory ))THEN
@@ -22,4 +22,4 @@ AS $BODY$
 		WHEN OTHERS THEN 
             RAISE;
     END;
-$BODY$;
+$function$;

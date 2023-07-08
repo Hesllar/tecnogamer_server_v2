@@ -12,7 +12,7 @@ CREATE OR REPLACE FUNCTION fn_update_product(p_product_id integer,
     VOLATILE PARALLEL UNSAFE
     ROWS 1000
 
-AS $BODY$
+AS $function$
     BEGIN
 	
 		if(not exists(select p.product_id from products p where p.product_id = p_product_id))then
@@ -45,4 +45,4 @@ AS $BODY$
 		WHEN OTHERS THEN 
             RAISE;
     END;
-$BODY$;
+$function$;
