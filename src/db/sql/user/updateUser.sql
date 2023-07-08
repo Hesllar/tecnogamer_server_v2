@@ -9,7 +9,7 @@ CREATE OR REPLACE FUNCTION fn_update_user(p_user_id integer,
     VOLATILE PARALLEL UNSAFE
     ROWS 1000
 
-AS $BODY$
+AS $function$
 DECLARE
 v_row_count integer;
     BEGIN
@@ -36,4 +36,4 @@ v_row_count integer;
 		WHEN OTHERS THEN 
             RAISE;
     END;
-$BODY$;
+$function$;

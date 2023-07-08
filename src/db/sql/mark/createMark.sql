@@ -6,7 +6,7 @@ CREATE OR REPLACE FUNCTION fn_create_mark(
     VOLATILE PARALLEL UNSAFE
     ROWS 1000
 
-AS $BODY$
+AS $function$
     BEGIN
 		
 		IF(exists (select m.name_mark from marks m WHERE m.name_mark = p_namemark ))THEN
@@ -22,4 +22,4 @@ AS $BODY$
 		WHEN OTHERS THEN 
             RAISE;
     END;
-$BODY$;
+$function$;

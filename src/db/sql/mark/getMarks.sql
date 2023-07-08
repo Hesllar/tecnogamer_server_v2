@@ -6,7 +6,7 @@ CREATE OR REPLACE FUNCTION fn_get_marks(
     VOLATILE PARALLEL UNSAFE
     ROWS 1000
 
-AS $BODY$
+AS $function$
     BEGIN
         
         RETURN QUERY
@@ -15,4 +15,4 @@ AS $BODY$
         when others then 
             RAISE;
     END;
-$BODY$;
+$function$;

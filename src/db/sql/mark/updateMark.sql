@@ -7,7 +7,7 @@ CREATE OR REPLACE FUNCTION fn_update_mark(
     VOLATILE PARALLEL UNSAFE
     ROWS 1000
 
-AS $BODY$
+AS $function$
     BEGIN
 		
 		IF(not exists (select m.name_mark from marks m WHERE m.mark_id =  p_markid))THEN
@@ -29,4 +29,4 @@ AS $BODY$
 		WHEN OTHERS THEN 
             RAISE;
     END;
-$BODY$;
+$function$;
