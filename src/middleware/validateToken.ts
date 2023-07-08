@@ -1,6 +1,6 @@
+import { Request, Response,NextFunction } from 'express';
 import jwt,{JwtPayload} from 'jsonwebtoken';
 import { badRequest } from '../utils/http';
-import { Request, Response,NextFunction } from 'express';
 
 const secretToken = process.env.SECRET_TOKEN || 'mradQ18Pl2';
 
@@ -29,8 +29,5 @@ export const validateToken = (req:Request, res:Response, next:NextFunction)=> {
             badRequest(res, 'Error, token de acceso no válido',error, 401);
         }
         
-    }
-    
-
-    
+    } 
 }

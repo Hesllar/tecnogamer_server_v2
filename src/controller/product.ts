@@ -1,18 +1,12 @@
 import { Request, Response } from 'express';
 import { sendOk, internalError, badRequest } from '../utils/http';
 import { productMappers } from '../mappers';
-import { 
-    getProductsFn, 
-    getProductByIdFn, 
-    createProductFn, 
-    updateProductFn, 
-    deleteProductFn
-    } from '../services/product';
+import { serviceProduct} from '../services';
 
 export const getProducts = async (req: Request, res: Response) => {
     try {
 
-        const getProducts = await getProductsFn();
+        const getProducts = await serviceProduct.getProductsFn();
     
          const result = getProducts.map(({product_id, name_product, category_id, mark_id, ...resto}) => {
           
@@ -39,7 +33,7 @@ export const getProducts = async (req: Request, res: Response) => {
 export const getProductById = async (req: Request, res: Response) => {
     try {
 
-        const getProductById = await getProductByIdFn( {product_id: + req.params.productId});
+        const getProductById = await serviceProduct.getProductByIdFn( {product_id: + req.params.productId});
         
         if(!getProductById) return badRequest(res,'No hay datos para este producto', {} );
 
@@ -82,7 +76,7 @@ export const createProduct = async (req: Request, res: Response) => {
             category_id:body.categoryId
         });
 
-        const createProduct =  await createProductFn(resto);
+        const createProduct =  await serviceProduct.createProductFn(resto);
 
         sendOk(res, 'Producto creado correctamente', {
             productId:createProduct.product_id,
@@ -115,7 +109,7 @@ export const updateProduct = async (req: Request, res: Response) => {
             category_id: body.categoryId
         });
 
-        const { product_id } = await updateProductFn(productMapper);;
+        const { product_id } = await serviceProduct.updateProductFn(productMapper);;
 
         sendOk(res, 'Producto actualizado correctamente', {
             productId:product_id
@@ -133,9 +127,9 @@ export const deleteProduct = async (req: Request, res: Response) => {
 
         const { productId } = req.params;
 
-        const resultDeleteProduct = await deleteProductFn(+productId);
+        const resultDeleteProduct = await serviceProduct.deleteProductFn(+productId);
 
-        if(resultDeleteProduct === 0) return badRequest(res, 'El producto que intenta eliminar no se encuentra registrado', {});
+        if(resultDeleteProduct.rows_affected === 0) return badRequest(res, 'El producto que intenta eliminar no se encuentra registrado', {});
 
         sendOk(res, 'Producto eliminado correctamente', resultDeleteProduct, 201);
 

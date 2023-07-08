@@ -6,8 +6,6 @@ import { sendOk, internalError, badRequest } from '../utils/http';
 import { createToken } from '../auth/createToken';
 import { createUserName } from '../utils/createUserName';
 import { userMappers } from '../mappers';
-import { createUserFn } from '../db/function/user';
-import {  RegisterUser } from '../interfaces';
 
 
 export const login = async (req: Request, res: Response) => {
@@ -60,7 +58,7 @@ export const registerUser = async (req: Request, res: Response) => {
         
         const { user_id: userId, email, type_user:typeUser } = createUser;
 
-        const {ok, msg, token} = await createToken(userId, email, typeUser);
+        const {ok, msg, token} = await createToken(userId ?? 0, email, typeUser);
 
         if(!ok) return badRequest(res, msg, {});
 

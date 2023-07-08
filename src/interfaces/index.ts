@@ -4,6 +4,7 @@ export * from './mark';
 export * from './product';
 export * from './responseService';
 export * from './config';
+export * from './sale';
 
 
 

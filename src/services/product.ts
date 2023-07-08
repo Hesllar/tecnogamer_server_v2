@@ -3,15 +3,13 @@ import { QueryTypes } from 'sequelize';
 import { ProductInterface, GetProductById, OutPutCreateProduct, CreateProduct, OutPutUpdateProduct } from '../interfaces';
 import { lengthParams } from '../utils/lengthParams';
 
-
-
 export const getProductsFn = async (): Promise<Array<ProductInterface>> => {
     try {
 
         const resultgetCategoriesFn = await db.query('SELECT * FROM fn_get_products()',
-            { type: QueryTypes.SELECT }) as Array<ProductInterface>;
+            { type: QueryTypes.SELECT }) ;
         
-        return resultgetCategoriesFn;
+        return resultgetCategoriesFn as Array<ProductInterface>;
 
     } catch (error) {
         throw error;
@@ -24,7 +22,7 @@ export const getProductByIdFn = async ({ product_id }: GetProductById): Promise<
         const resultGetCategoryById = await db.query<ProductInterface>('SELECT * FROM fn_get_product_by_id(?)', 
         { type: QueryTypes.SELECT, replacements:[ product_id ] });
 
-        return resultGetCategoryById[0];
+        return resultGetCategoryById.pop() as ProductInterface;
 
     } catch (error) {
         throw error;
@@ -33,10 +31,12 @@ export const getProductByIdFn = async ({ product_id }: GetProductById): Promise<
 
 export const createProductFn = async ( productData: CreateProduct ): Promise<OutPutCreateProduct> => {
     try {
-        const resultCreateProduct = await db.query<OutPutCreateProduct>(`SELECT * FROM fn_create_product(${lengthParams(Object.keys(productData).length)})`,
-            { type: QueryTypes.SELECT, replacements: Object.values(productData) });
+        const resultCreateProduct = await db.query(`SELECT * FROM fn_create_product(${lengthParams(Object.keys(productData).length)})`,
+            { type: QueryTypes.INSERT, replacements: Object.values(productData)});
+        
+        const getValue = resultCreateProduct.shift() as unknown as Array<OutPutCreateProduct>;
             
-        return resultCreateProduct[0];
+        return getValue.shift() as OutPutCreateProduct;
     } catch (error) {
         throw error;
     }
@@ -45,21 +45,24 @@ export const createProductFn = async ( productData: CreateProduct ): Promise<Out
 export const updateProductFn = async (productData: ProductInterface): Promise<OutPutUpdateProduct> => {
     try {
         
-        const resultUpdatePorduct = await db.query<OutPutUpdateProduct>(`SELECT * FROM fn_update_product(${lengthParams(Object.keys(productData).length)})`,
-            { type: QueryTypes.SELECT, replacements: Object.values(productData) });
-        return resultUpdatePorduct[0];
+        const resultUpdatePorduct = await db.query(`SELECT * FROM fn_update_product(${lengthParams(Object.keys(productData).length)})`,
+            { type: QueryTypes.UPDATE, replacements: Object.values(productData) });
+
+        const getValue = resultUpdatePorduct.shift() as unknown as Array<OutPutCreateProduct>;
+
+        return getValue.shift() as OutPutCreateProduct;
     } catch (error) {
         throw error;
     }
 }
 
-export const deleteProductFn = async ( productId: number ): Promise<Number> => {
+export const deleteProductFn = async ( productId: number ): Promise<{rows_affected:number}> => {
     try {
 
-        const [{rows_affected}] = await db.query(`SELECT * FROM fn_delete_product(?)`,
+        const resultDeleteProduct = await db.query(`SELECT * FROM fn_delete_product(?)`,
             { type: QueryTypes.DELETE, replacements: [productId] }) as unknown as Array<{rows_affected: number}>;
-            
-        return rows_affected;
+
+        return resultDeleteProduct.shift() as {rows_affected:number};
 
     } catch (error) {
        throw error;
