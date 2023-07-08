@@ -1,0 +1,739 @@
+{
+	"info": {
+		"_postman_id": "d06911c8-5052-49f4-985e-d116d199b3ca",
+		"name": "TecnogamerV2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16890040"
+	},
+	"item": [
+		{
+			"name": "Marca",
+			"item": [
+				{
+					"name": "Obtener marcas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/mark/get-marks",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"mark",
+								"get-marks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener marca por id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "{{x-access-token}}",
+								"value": "{{valueToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/mark/get-mark/by-id/:markId",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"mark",
+								"get-mark",
+								"by-id",
+								":markId"
+							],
+							"variable": [
+								{
+									"key": "markId",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear marca",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "{{x-access-token}}",
+								"value": "{{valueToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nameMark\":\"Asus1243t\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/mark/create-mark",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"mark",
+								"create-mark"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar marca",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "{{x-access-token}}",
+								"value": "{{valueToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nameMark\":\"Intelaasda\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/mark/update-mark/:markId",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"mark",
+								"update-mark",
+								":markId"
+							],
+							"variable": [
+								{
+									"key": "markId",
+									"value": "14"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categoría",
+			"item": [
+				{
+					"name": "Obtener categorías",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/category/get-categories",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"category",
+								"get-categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener categoría por id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "{{x-access-token}}",
+								"value": "{{valueToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/category/get-category-by-id/:categoryId",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"category",
+								"get-category-by-id",
+								":categoryId"
+							],
+							"variable": [
+								{
+									"key": "categoryId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear categoría",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "{{x-access-token}}",
+								"value": "{{valueToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nameCategory\":\"Mousea\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/category/create-category",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"category",
+								"create-category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar categoría",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "{{x-access-token}}",
+								"value": "{{valueToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nameCategory\":\"Pruebaasd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/category/update-category/:categoryId",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"category",
+								"update-category",
+								":categoryId"
+							],
+							"variable": [
+								{
+									"key": "categoryId",
+									"value": "19"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Producto",
+			"item": [
+				{
+					"name": "Crear producto",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "{{x-access-token}}",
+								"value": "{{valueToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nameProduct\":\"Prueba\",\r\n    \"stock\":5,\r\n    \"price\":100,\r\n    \"description\":\"\",\r\n    \"image\":\"\",\r\n    \"markId\":2,\r\n    \"categoryId\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/product/create-product",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"product",
+								"create-product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener productos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/product/get-products",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"product",
+								"get-products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener producto por id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/product/get-product-by-id/:productId",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"product",
+								"get-product-by-id",
+								":productId"
+							],
+							"variable": [
+								{
+									"key": "productId",
+									"value": "44"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar producto",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "{{x-access-token}}",
+								"value": "{{valueToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nameProduct\":\"Galax GeForce RTX 4090 SG (1-Click OC Feature) [49NXM5MD6DSG]\",\r\n    \"stock\":0,\r\n    \"price\":69000,\r\n    \"description\":\"Gpu de alta gama\",\r\n    \"image\":\"https://res.cloudinary.com/dq7ngio9s/image/upload/v1681444721/tecnogamer/arehjd8fvfktoyvyq6ti.png\",\r\n    \"markId\":2,\r\n    \"categoryId\":2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/product/update-product/:productId",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"product",
+								"update-product",
+								":productId"
+							],
+							"variable": [
+								{
+									"key": "productId",
+									"value": "44"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar producto",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "{{x-access-token}}",
+								"value": "{{valueToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/product/delete-product/:productId",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"product",
+								"delete-product",
+								":productId"
+							],
+							"variable": [
+								{
+									"key": "productId",
+									"value": "61"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "Obtener usuarios",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "{{x-access-token}}",
+								"value": "{{valueToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/user/get-users",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"user",
+								"get-users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener usuario por id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "{{x-access-token}}",
+								"value": "{{valueToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/user/get-user-by-id/:userId",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"user",
+								"get-user-by-id",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "16"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar usuario",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "{{x-access-token}}",
+								"value": "{{valueToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\":\"Hesllar123\",\r\n    \"lastName\":\"Linzmayer123\",\r\n    \"userName\":\"helinzmayer1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/user/update-user/:userId",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"user",
+								"update-user",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "16"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar contraseña",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "{{x-access-token}}",
+								"value": "{{valueToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\":\"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/user/update-password/:emailUser",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"user",
+								"update-password",
+								":emailUser"
+							],
+							"variable": [
+								{
+									"key": "emailUser",
+									"value": "hesllar@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const {response} = pm.response.json();\r",
+									"pm.collectionVariables.set(\"valueToken\", response.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"hesllar@gmail.com\",\r\n    \"password\":\"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/auth/login",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\":\"Juan\",\r\n    \"lastName\":\"Perez\",\r\n    \"email\":\"matia335322@gmail.com\",\r\n    \"password\":\"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/auth/register",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset token",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "{{x-access-token}}",
+								"value": "{{valueToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/auth/reset-token",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"auth",
+								"reset-token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Venta",
+			"item": [
+				{
+					"name": "Crear venta",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "{{x-access-token}}",
+								"value": "{{valueToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"products\":[\r\n        {\r\n            \"productId\":43,\r\n            \"unityPrice\":4,\r\n            \"totalPrice\":2000,\r\n            \"quantity\":5\r\n        },\r\n         {\r\n            \"productId\":42,\r\n            \"unityPrice\":4,\r\n            \"totalPrice\":2000,\r\n            \"quantity\":5\r\n        },\r\n         {\r\n            \"productId\":44,\r\n            \"unityPrice\":4,\r\n            \"totalPrice\":10000,\r\n            \"quantity\":5\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/sale/create-sale",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"sale",
+								"create-sale"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "x-access-token",
+			"value": "x-access-token",
+			"type": "string"
+		},
+		{
+			"key": "valueToken",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "BASE_URL",
+			"value": "http://localhost:8000/api",
+			"type": "string"
+		}
+	]
+}
