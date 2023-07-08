@@ -3,3 +3,4 @@ export * as serviceCategory from  './category';
 export * as serviceAuth from  './auth';
 export * as serviceProduct from  './product';
 export * as serviceUser from  './user';
+export * as serviceSale from  './sale';
