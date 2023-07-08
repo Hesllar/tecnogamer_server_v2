@@ -36,6 +36,8 @@ export const createSale = async ( req:Request, res:Response)=>{
         }
 
         const resultCreateSaleFn = await serviceSale.createSaleFn(dataCreateSale);
+
+        
         
         sendOk(res, 'Compra registrada correctamente', resultCreateSaleFn, 201);
 

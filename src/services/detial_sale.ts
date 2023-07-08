@@ -1,19 +1,8 @@
 import { QueryTypes } from 'sequelize';
 import db from '../db/config';
-import { Sale } from '../interfaces';
+import { DetailSale } from '../interfaces';
 
-
-export const validateSaleFn = async (producId: number, userId: number) => {
-    try {
-
-        await db.query('SELECT * FROM fn_validate_sale(?, ?)', { type: QueryTypes.SELECT, replacements:[producId, userId] }); 
-        
-    } catch (error) {
-        throw error;
-    }
-}
-
-export const createSaleFn = async ({total_sale, total_products, user_id}:Sale): Promise<{fn_create_sale: number}> => {
+export const createDetailSaleFn = async (detailSale: DetailSale): Promise<{fn_create_sale: number}> => {
     try {
 
         const resultCreateSale = await db.query('SELECT * FROM fn_create_sale(?, ?, ?)', 

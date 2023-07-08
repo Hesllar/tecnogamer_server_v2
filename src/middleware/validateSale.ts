@@ -11,22 +11,27 @@ export const validateSale = async (req:Request, res:Response, next:NextFunction)
         const { products }: DetailSale= req.body;
 
         const { user } = req.userData;
-     
-        if(products.length > 0){
-    
-            const arrPromise = [];
+        
+        if(Array.isArray(products)){
 
-            for (const product of products) {
-                
-                arrPromise.push(serviceSale.validateSaleFn(product.productId, user));
+            if(products.length > 0){
+        
+                const arrPromise = [];
+    
+                for (const product of products) {
+                    
+                    arrPromise.push(serviceSale.validateSaleFn(product.productId, user));
+                }
+    
+                await Promise.all(arrPromise);
+    
+                return next();
             }
 
-            await Promise.all(arrPromise);
-
-            return next();
+            badRequest(res, 'No hay productos en la lista', products);
         }
 
-        badRequest(res, 'No hay productos', products);
+        badRequest(res, 'No es una lista de productos', products);
 
     } catch (error) {
         if (error instanceof Error) {
