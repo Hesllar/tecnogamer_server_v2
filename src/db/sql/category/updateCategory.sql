@@ -7,7 +7,7 @@ CREATE OR REPLACE FUNCTION fn_update_category(
     VOLATILE PARALLEL UNSAFE
     ROWS 1000
 
-AS $BODY$
+AS $function$
     BEGIN
 		if(not exists(select * from categories c where c.category_id = p_categoryid))then
 			raise 'La categoría, no está registrada';
@@ -29,4 +29,4 @@ AS $BODY$
 		WHEN OTHERS THEN 
             RAISE;
     END;
-$BODY$;
+$function$;

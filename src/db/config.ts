@@ -1,17 +1,20 @@
 
-import { Sequelize } from 'sequelize'
+import { Sequelize, Dialect } from 'sequelize'
 import dotenv from 'dotenv'
+import { configDB } from '../interfaces';
 dotenv.config({ path: './src/.env' });
 
-const database: string = process.env.DB_NAME || '';
-const host: string = process.env.DB_HOST || '';
-const userDb: string = process.env.DB_USERNAME || '';
-const userPass: string = process.env.DB_PASSWORD || '';
+const config: configDB = {
+    dataBase:process.env.DB_NAME,
+    userDB:process.env.DB_USERNAME,
+    userPass:process.env.DB_PASSWORD,
+    opcionDB:{
+        host:process.env.DB_HOST,
+        port: process.env.DB_PORT as unknown as number ?? 54320,
+        dialect: 'postgres'
+    }
+    }
 
-const db = new Sequelize(database, userDb, userPass, {
-    host,
-    port: 5432,
-    dialect: 'postgres'
-});
+const db = new Sequelize(...Object.values(config));
 
 export default db;
