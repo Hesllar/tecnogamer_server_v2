@@ -19,7 +19,7 @@ export const createSale = async ( req:Request, res:Response)=>{
         const { user } = req.userData;
 
         const { products }:DetailSale = req.body;
-        console.log(products)
+
         if(Array.isArray(products)){
 
             for (const values of products) {
@@ -32,7 +32,7 @@ export const createSale = async ( req:Request, res:Response)=>{
             }
 
             const resultCreateSaleFn = await serviceSale.createSaleFn(dataCreateSale);
-
+            
             let arrayPromise = [];
 
             for (const product of products) {

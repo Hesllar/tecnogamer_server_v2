@@ -20,7 +20,7 @@ export const validateSale = async (req:Request, res:Response, next:NextFunction)
     
                 for (const product of products) {
                     
-                    arrPromise.push(serviceSale.validateSaleFn(product.productId, user));
+                    arrPromise.push(serviceSale.validateSaleFn(product.productId, user, product.quantity));
                 }
     
                 await Promise.all(arrPromise);

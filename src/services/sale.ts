@@ -3,10 +3,10 @@ import db from '../db/config';
 import { Sale } from '../interfaces';
 
 
-export const validateSaleFn = async (producId: number, userId: number) => {
+export const validateSaleFn = async (producId: number, userId: number, quantity: number) => {
     try {
 
-        await db.query('SELECT * FROM fn_validate_sale(?, ?)', { type: QueryTypes.SELECT, replacements:[producId, userId] }); 
+        await db.query('SELECT * FROM fn_validate_sale(?, ?, ?)', { type: QueryTypes.SELECT, replacements:[producId, userId, quantity] }); 
         
     } catch (error) {
         throw error;
