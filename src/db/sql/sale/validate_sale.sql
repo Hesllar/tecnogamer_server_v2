@@ -16,7 +16,7 @@ begin
 		raise 'Error al generar la compra';
 	elsif((select p.stock from products p where p.product_id = p_product_id) = 0)then
 		raise 'El Producto % sin stock', v_name_product;
-	elsif(((select p.stock from products p where p.product_id = p_product_id) - p_quantity) <= 0)then
+	elsif(((select p.stock from products p where p.product_id = p_product_id) - p_quantity) < 0)then
 		raise 'El producto % excede el stock máximo', v_name_product;
 	end if;
 	
