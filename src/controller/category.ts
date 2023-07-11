@@ -52,9 +52,9 @@ export const createCategory = async (req: Request, res: Response) => {
 
         const { nameCategory } = req.body;
 
-        const createCategory = await serviceCategory.createCategoryFn(nameCategory.trim());
+        const {name_category, category_id} = await serviceCategory.createCategoryFn(nameCategory.trim());
         
-        sendOk(res, 'Categoría creada correctamente', {nameCategory:createCategory.name_category}, 201);
+        sendOk(res, 'Categoría creada correctamente', {categoryId: category_id, nameCategory:name_category }, 201);
 
     } catch (error) {
         if (error instanceof Error) {

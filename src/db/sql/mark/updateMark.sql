@@ -1,11 +1,8 @@
 CREATE OR REPLACE FUNCTION fn_update_mark(
 	p_markid integer,
 	p_namemark character varying)
-    RETURNS TABLE(name_mark character varying) 
+    RETURNS boolean
     LANGUAGE 'plpgsql'
-    COST 100
-    VOLATILE PARALLEL UNSAFE
-    ROWS 1000
 
 AS $function$
     BEGIN
@@ -23,8 +20,7 @@ AS $function$
 		UPDATE marks
 		SET name_mark = p_namemark WHERE mark_id = p_markid;
         
-        RETURN QUERY
-          SELECT p_nameMark;
+        RETURN true;
         EXCEPTION
 		WHEN OTHERS THEN 
             RAISE;

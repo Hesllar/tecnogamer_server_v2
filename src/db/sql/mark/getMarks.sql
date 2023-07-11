@@ -1,6 +1,6 @@
 CREATE OR REPLACE FUNCTION fn_get_marks(
 	)
-    RETURNS TABLE(mark_id integer, name_mark character varying) 
+    RETURNS setof public.marks 
     LANGUAGE 'plpgsql'
     COST 100
     VOLATILE PARALLEL UNSAFE

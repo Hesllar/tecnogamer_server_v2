@@ -1,22 +1,16 @@
 import db from '../db/config';
 import { QueryTypes } from 'sequelize';
-import { PostMark, 
-    GetMarkById, 
-    Mark, 
-    OutPutGetMarks, 
-    OutPutGetMarkById,
-    OutPutPostMark,
-    OutPutPutMark } from '../interfaces';
+import { Mark } from '../interfaces';
 
 
 
-export const getMarksFn = async (): Promise<Array<OutPutGetMarks>> => {
+export const getMarksFn = async (): Promise<Array<Mark>> => {
     try {
         
         const resultGetMarksFn = await db.query('SELECT * FROM fn_get_marks()', 
         { type: QueryTypes.SELECT }); 
         
-        return  resultGetMarksFn as Array<OutPutGetMarks>;
+        return  resultGetMarksFn as Array<Mark>;
 
     } catch (error) {
         throw error;
@@ -24,28 +18,28 @@ export const getMarksFn = async (): Promise<Array<OutPutGetMarks>> => {
 }
 
 
-export const getMarkByIdFn = async ({ mark_id }:GetMarkById): Promise<OutPutGetMarkById> => {
+export const getMarkByIdFn = async (markId: number): Promise<Mark> => {
     try {
         
         const resultGetMarkByIdFn = await db.query('SELECT * FROM fn_get_mark_by_id(?)', 
-        { type: QueryTypes.SELECT, replacements:[mark_id] });
+        { type: QueryTypes.SELECT, replacements:[markId] });
         
-       return resultGetMarkByIdFn.pop() as  OutPutGetMarkById;
+       return resultGetMarkByIdFn.pop() as  Mark;
 
     } catch (error) {
         throw error;
     }
 }
 
-export const createMarkFn = async ({ name_mark }: PostMark): Promise<OutPutPostMark> => {
+export const createMarkFn = async (nameMark: string): Promise<Mark> => {
     
     try {
         const resultCreateMarkFn = await db.query('SELECT * FROM fn_create_mark(?)',
-            { type: QueryTypes.INSERT, replacements: [name_mark] });
+            { type: QueryTypes.INSERT, replacements: [nameMark] });
 
-        const getValue = resultCreateMarkFn.shift() as unknown as Array<OutPutPostMark>;
+        const getValue = resultCreateMarkFn.shift() as unknown as Array<Mark>;
         
-        return getValue.shift() as OutPutPostMark;
+        return getValue.shift() as Mark;
 
     } catch (error) {
         throw error;
@@ -53,14 +47,14 @@ export const createMarkFn = async ({ name_mark }: PostMark): Promise<OutPutPostM
     }
 }
 
-export const updateMarkFn = async ({ mark_id,  name_mark }:Mark): Promise<OutPutPutMark> => {
+export const updateMarkFn = async ({ mark_id,  name_mark }:Mark): Promise<{wasModified:boolean}> => {
     try {
         const resultUpdateMarkFn = await db.query('SELECT * FROM fn_update_mark( ?, ?)',
             { type: QueryTypes.UPDATE, replacements: [mark_id, name_mark] });
 
-        const getValue = resultUpdateMarkFn.shift() as unknown as Array<OutPutPutMark>;
+        const [[{fn_update_mark}]] = resultUpdateMarkFn as unknown as [[{fn_update_mark:boolean}]];
 
-        return getValue.shift() as OutPutPutMark;
+        return {wasModified:fn_update_mark};
         
     } catch (error) {
         throw error;
