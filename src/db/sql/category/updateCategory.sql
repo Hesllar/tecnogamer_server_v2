@@ -1,11 +1,8 @@
 CREATE OR REPLACE FUNCTION fn_update_category(
 	p_categoryid integer,
 	p_namecategory character varying)
-    RETURNS TABLE(name_category character varying) 
+    RETURNS boolean
     LANGUAGE 'plpgsql'
-    COST 100
-    VOLATILE PARALLEL UNSAFE
-    ROWS 1000
 
 AS $function$
     BEGIN
@@ -23,8 +20,7 @@ AS $function$
 		UPDATE categories
 		SET name_category = p_namecategory WHERE category_id = p_categoryid;
         
-        RETURN QUERY
-          SELECT p_namecategory;
+        RETURN true;
         EXCEPTION
 		WHEN OTHERS THEN 
             RAISE;

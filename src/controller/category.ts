@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { serviceCategory } from '../services';
-import { Category, OutPutGetCategories, OutPutGetCategoryById, OutPutPostCategory } from '../interfaces';
+
 import { sendOk, internalError, badRequest } from '../utils/http';
 
 export const getCategories = async (req: Request, res: Response) => {
@@ -8,7 +8,7 @@ export const getCategories = async (req: Request, res: Response) => {
 
         const getCategories = await serviceCategory.getCategoriesFn();
         
-        const structure = getCategories.map(({category_id,name_category}: OutPutGetCategories) => {
+        const structure = getCategories.map(({category_id,name_category}) => {
             return {
                 categoryId: category_id,
                 nameCategory:name_category
@@ -70,9 +70,9 @@ export const updateCategory = async (req: Request, res: Response) => {
 
         const { nameCategory } = req.body;
 
-        const updateCategory  = await serviceCategory.updateCategoryFn(+categoryId, nameCategory);
+        const updateCategory  = await serviceCategory.updateCategoryFn({ name_category: nameCategory, category_id: +categoryId});
         
-        sendOk(res, 'Categoría actualizada correctamente', {nameCategory: updateCategory.name_category}, 201);
+        sendOk(res, 'Categoría actualizada correctamente', updateCategory, 201);
 
     } catch (error) {
         if (error instanceof Error) {

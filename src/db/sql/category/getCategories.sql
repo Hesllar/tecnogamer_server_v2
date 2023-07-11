@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION fn_get_categories()
-    RETURNS TABLE(category_id integer,name_category character varying) 
+    RETURNS SETOF public.categories 
     LANGUAGE 'plpgsql'
     COST 100
     VOLATILE PARALLEL UNSAFE
