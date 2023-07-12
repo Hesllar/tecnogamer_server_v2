@@ -6,11 +6,8 @@ CREATE OR REPLACE FUNCTION fn_update_product(p_product_id integer,
 											 p_image varchar,
 											 p_mark_id integer,
 											 p_category_id integer)
-    RETURNS TABLE(product_id integer) 
+    RETURNS boolean 
     LANGUAGE 'plpgsql'
-    COST 100
-    VOLATILE PARALLEL UNSAFE
-    ROWS 1000
 
 AS $function$
     BEGIN
@@ -39,8 +36,7 @@ AS $function$
 			category_id=p_category_id
 			WHERE products.product_id = p_product_id;
 			
-        RETURN QUERY
-          SELECT p_product_id;
+        RETURN true;
         EXCEPTION
 		WHEN OTHERS THEN 
             RAISE;

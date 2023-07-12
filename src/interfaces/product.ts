@@ -4,9 +4,9 @@ export interface ProductInterface {
     price: number,
     description: string,
     image: string
-    product_id: number,
-    mark_id: number,
-    category_id: number,
+    product_id?: number,
+    mark_id?: number,
+    category_id?: number,
 }
 
 export type OutPutCreateProduct = Pick<ProductInterface, 'product_id' | 'name_product'>;

@@ -7,7 +7,8 @@ CREATE OR REPLACE FUNCTION fn_create_product(
 	p_mark_id integer,
 	p_category_id integer
 )
-RETURNS TABLE(product_id integer, name_product character varying) 
+
+RETURNS setof public.products 
 LANGUAGE 'plpgsql'
 COST 100
 VOLATILE PARALLEL UNSAFE
@@ -32,7 +33,7 @@ BEGIN
 	v_last_id:= lastval();
 	
 	RETURN QUERY
-	  SELECT v_last_id, p_name_product;
+	  SELECT * from products p where p.product_id = v_last_id;
 	EXCEPTION
 	WHEN OTHERS THEN 
 		RAISE;

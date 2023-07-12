@@ -72,7 +72,7 @@ export const updateCategory = async (req: Request, res: Response) => {
 
         const updateCategory  = await serviceCategory.updateCategoryFn({ name_category: nameCategory, category_id: +categoryId});
         
-        sendOk(res, 'Categoría actualizada correctamente', updateCategory, 201);
+        sendOk(res, 'Categoría actualizada correctamente', updateCategory);
 
     } catch (error) {
         if (error instanceof Error) {

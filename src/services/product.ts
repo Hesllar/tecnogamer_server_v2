@@ -19,7 +19,7 @@ export const getProductsFn = async (): Promise<Array<ProductInterface>> => {
 export const getProductByIdFn = async ({ product_id }: GetProductById): Promise<ProductInterface> => {
     try {
         
-        const resultGetCategoryById = await db.query<ProductInterface>('SELECT * FROM fn_get_product_by_id(?)', 
+        const resultGetCategoryById = await db.query('SELECT * FROM fn_get_product_by_id(?)', 
         { type: QueryTypes.SELECT, replacements:[ product_id ] });
 
         return resultGetCategoryById.pop() as ProductInterface;
@@ -29,40 +29,42 @@ export const getProductByIdFn = async ({ product_id }: GetProductById): Promise<
     }
 }
 
-export const createProductFn = async ( productData: CreateProduct ): Promise<OutPutCreateProduct> => {
+export const createProductFn = async ( productData: CreateProduct ): Promise<ProductInterface> => {
     try {
         const resultCreateProduct = await db.query(`SELECT * FROM fn_create_product(${lengthParams(Object.keys(productData).length)})`,
             { type: QueryTypes.INSERT, replacements: Object.values(productData)});
         
-        const getValue = resultCreateProduct.shift() as unknown as Array<OutPutCreateProduct>;
+        const getValue = resultCreateProduct.shift() as unknown as Array<ProductInterface>;
             
-        return getValue.shift() as OutPutCreateProduct;
+        return getValue.shift() as ProductInterface;
     } catch (error) {
         throw error;
     }
 }
 
-export const updateProductFn = async (productData: ProductInterface): Promise<OutPutUpdateProduct> => {
+export const updateProductFn = async (productData: ProductInterface): Promise<{wasModified:boolean}> => {
     try {
         
         const resultUpdatePorduct = await db.query(`SELECT * FROM fn_update_product(${lengthParams(Object.keys(productData).length)})`,
             { type: QueryTypes.UPDATE, replacements: Object.values(productData) });
 
-        const getValue = resultUpdatePorduct.shift() as unknown as Array<OutPutCreateProduct>;
+        const [[{fn_update_product}]] = resultUpdatePorduct as unknown as [[{fn_update_product:boolean}]];
 
-        return getValue.shift() as OutPutCreateProduct;
+        return {wasModified:fn_update_product};
     } catch (error) {
         throw error;
     }
 }
 
-export const deleteProductFn = async ( productId: number ): Promise<{rows_affected:number}> => {
+export const deleteProductFn = async ( productId: number ): Promise<{wasRemove:boolean}> => {
     try {
 
         const resultDeleteProduct = await db.query(`SELECT * FROM fn_delete_product(?)`,
-            { type: QueryTypes.DELETE, replacements: [productId] }) as unknown as Array<{rows_affected: number}>;
+            { type: QueryTypes.DELETE, replacements: [productId] });
 
-        return resultDeleteProduct.shift() as {rows_affected:number};
+        const [{fn_delete_product}] = resultDeleteProduct as unknown as [{fn_delete_product:boolean}];
+
+        return  {wasRemove:fn_delete_product};
 
     } catch (error) {
        throw error;

@@ -19,11 +19,11 @@ export const login = async (req: Request, res: Response) => {
 
         const {user_id: userId, type_user: typeUser} = restoLogin;
 
-        const isValidPassword = bcrypt.compareSync(password, passwordDB);
+        const isValidPassword = bcrypt.compareSync(password, passwordDB || '');
 
         if (!isValidPassword) return badRequest(res, 'El correo o contraseña no son válidos', {});
         
-        const {ok, msg, token} = await createToken(userId, restoLogin.email, typeUser);
+        const {ok, msg, token} = await createToken(userId!, restoLogin.email!, typeUser!);
 
         if(!ok) return badRequest(res, msg, {});
         
@@ -44,7 +44,7 @@ export const registerUser = async (req: Request, res: Response) => {
 
         const userName = createUserName(firstName, lastName);
 
-        const passwordHash = bcrypt.hashSync(password?.trim(), 10);
+        const passwordHash = bcrypt.hashSync(password.trim(), 10);
 
         const createUserMappers = userMappers({
             first_name:firstName, 
@@ -58,7 +58,7 @@ export const registerUser = async (req: Request, res: Response) => {
         
         const { user_id: userId, email, type_user:typeUser } = createUser;
 
-        const {ok, msg, token} = await createToken(userId ?? 0, email, typeUser);
+        const {ok, msg, token} = await createToken(userId ?? 0, email!, typeUser!);
 
         if(!ok) return badRequest(res, msg, {});
 

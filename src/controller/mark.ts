@@ -81,7 +81,7 @@ export const updateMark = async (req: Request, res: Response) => {
 
         const updateMark = await serviceMark.updateMarkFn(bodyMark);
 
-        sendOk(res, 'Marca actualizada correctamente', updateMark, 201);
+        sendOk(res, 'Marca actualizada correctamente', updateMark);
 
     } catch (error) {
         if (error instanceof Error) {

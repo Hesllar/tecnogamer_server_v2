@@ -70,18 +70,11 @@ export const updateUser = async (req: Request, res: Response) => {
             first_name: firstName,
             last_name: lastName,
             user_name: userName,
-            email: '',
-            password: '',
-            type_user: 0
         }); 
     
         const resultUpdateUser = await serviceUser.updateUserFn({ user_id: +userId, first_name, last_name, user_name});
-
-        sendOk(res, 
-            (resultUpdateUser.rows_affected > 0) 
-                ? 'Usuario actualizado correctamente'
-                : 'No hay nuevas modificaciones para este usuario',
-        resultUpdateUser, 201);
+        
+        sendOk(res, 'Usuario actualizado correctamente',resultUpdateUser);
 
     } catch (error) {
         if (error instanceof Error) {
@@ -101,7 +94,7 @@ export const updatePassword = async (req: Request, res: Response) => {
         
         const resultUpdatePasswordUser = await serviceUser.updatePasswordUserFn(emailUser.trim(), passHash);
 
-        sendOk(res, 'Contraseña actualizada correctamente', resultUpdatePasswordUser, 201);
+        sendOk(res, 'Contraseña actualizada correctamente', resultUpdatePasswordUser);
 
     } catch (error) {
         if (error instanceof Error) {

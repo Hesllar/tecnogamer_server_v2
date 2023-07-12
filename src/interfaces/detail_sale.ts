@@ -1,8 +1,8 @@
 type Products = {
-    productId:number;
     quantity:number;
     unityPrice:number;
     totalPrice:number;
+    productId?:number;
     
 }
 

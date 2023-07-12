@@ -1,15 +1,8 @@
-
-
 CREATE OR REPLACE FUNCTION fn_update_password_user(p_email text, p_password text)
-RETURNS TABLE(rows_affected integer) 
+RETURNS boolean
 LANGUAGE 'plpgsql'
-COST 100
-VOLATILE PARALLEL UNSAFE
-ROWS 1000
 
 AS $function$
-DECLARE
-v_row_count integer;
 BEGIN
 	
 	if(not exists(select s.email from users s where s.email = p_email))then
@@ -20,10 +13,7 @@ BEGIN
 	set "password" = p_password
 	where users.email = p_email;
 	
-	GET DIAGNOSTICS v_row_count = ROW_COUNT;
-	
-	RETURN QUERY
-	  SELECT v_row_count;
+	RETURN true;
 	EXCEPTION
 	WHEN OTHERS THEN 
 		RAISE;

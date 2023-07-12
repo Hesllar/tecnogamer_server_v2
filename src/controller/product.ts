@@ -20,7 +20,7 @@ export const getProducts = async (req: Request, res: Response) => {
 
         });
 
-        sendOk(res, (result.length === 0) ? 'No hay productos' : 'Productos encontrados', result, 200);
+        sendOk(res, (result.length === 0) ? 'No hay productos' : 'Productos encontrados', result);
 
     } catch (error) {
         if (error instanceof Error) {
@@ -51,7 +51,7 @@ export const getProductById = async (req: Request, res: Response) => {
             categoryId,
             markId,
             ...resto
-        }, 200);
+        });
 
     } catch (error) {
         if (error instanceof Error) {
@@ -80,7 +80,13 @@ export const createProduct = async (req: Request, res: Response) => {
 
         sendOk(res, 'Producto creado correctamente', {
             productId:createProduct.product_id,
-            nameProduct: createProduct.name_product
+            nameProduct: createProduct.name_product,
+            description:createProduct.description,
+            stock:createProduct.stock,
+            price:createProduct.price,
+            image:createProduct.image,
+            categoryId:createProduct.category_id,
+            markId: createProduct.mark_id
         }, 201);
 
     } catch (error) {
@@ -109,11 +115,9 @@ export const updateProduct = async (req: Request, res: Response) => {
             category_id: body.categoryId
         });
 
-        const { product_id } = await serviceProduct.updateProductFn(productMapper);;
+        const resultUpdateProduct= await serviceProduct.updateProductFn(productMapper);;
 
-        sendOk(res, 'Producto actualizado correctamente', {
-            productId:product_id
-        }, 201);
+        sendOk(res, 'Producto actualizado correctamente', resultUpdateProduct);
 
     } catch (error) {
         if (error instanceof Error) {
@@ -129,9 +133,7 @@ export const deleteProduct = async (req: Request, res: Response) => {
 
         const resultDeleteProduct = await serviceProduct.deleteProductFn(+productId);
 
-        if(resultDeleteProduct.rows_affected === 0) return badRequest(res, 'El producto que intenta eliminar no se encuentra registrado', {});
-
-        sendOk(res, 'Producto eliminado correctamente', resultDeleteProduct, 201);
+        sendOk(res, 'Producto eliminado correctamente', resultDeleteProduct);
 
     } catch (error) {
         if (error instanceof Error) {
